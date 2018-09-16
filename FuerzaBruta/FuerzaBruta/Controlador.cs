@@ -108,12 +108,16 @@ namespace FuerzaBruta
                 while ((line = sr.ReadLine()) != null)
                 {
                     String[] todo = line.Split(';');
-                    if (todo.Length == 7 && !todo.ToList().Any(r => r.Equals("")))
+                    if (todo.Length == 8 && !todo.ToList().Any(r => r.Equals("")))
                     {
                         String cardCode = todo[0];
                         String docNum = todo[1];
                         String[] tiempo = todo[2].Split('/');
-                        DateTime docDate = new DateTime(Convert.ToInt32(tiempo[2]), Convert.ToInt32(tiempo[0]), Convert.ToInt32(tiempo[1]));
+                        int ano= Convert.ToInt32(tiempo[2]);
+                        int mes=Convert.ToInt32(tiempo[1]);
+                        int dia= Convert.ToInt32(tiempo[0]);
+                        DateTime docDate = new DateTime(ano,mes,dia);
+
                         String itemCode = todo[3];
                         int cantidad = Convert.ToInt32(todo[4]);
                         int precio = Convert.ToInt32(todo[5]);
@@ -123,8 +127,9 @@ namespace FuerzaBruta
                 }
                 sr.Close();
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar las Ventas");
             }
         }
