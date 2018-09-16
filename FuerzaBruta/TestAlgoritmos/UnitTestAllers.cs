@@ -14,10 +14,17 @@ namespace TestAlgoritmos
         [TestMethod]
         public void TestCargarArticulos()
         {
-            String rutaArticulos = "../../Data/Articulos.csv";
-            
+            String rutaArticulos = "../../BasesDatos/Articulos.csv";
 
-            
+            try
+            {
+            relacionControlador.cargarArticulosP(rutaArticulos);
+                Assert.IsTrue(true);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
             
 
 
@@ -26,9 +33,17 @@ namespace TestAlgoritmos
         [TestMethod]
         public void TestCargarClientes()
         {
-            String rutaCliente = "../../Data/Clientes.csv";
-
-           
+            String rutaCliente = "../../BasesDatos/Clientes.csv";
+            try
+            {
+                relacionControlador.cargarClientesP(rutaCliente);
+                Assert.IsTrue(true);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+            
 
 
 
@@ -38,14 +53,14 @@ namespace TestAlgoritmos
         public void TestCargarVentas()
         {
 
-            String rutaVentas = "../../Data/Ventas.csv";
+            String rutaVentas = "../../BasesDatos /Ventas.csv";
 
             try
             {
                 relacionControlador.cargarVentasP(rutaVentas);
                 Assert.IsTrue(true);
             }
-            catch 
+            catch
             {
                 Assert.IsTrue(false);
             }
