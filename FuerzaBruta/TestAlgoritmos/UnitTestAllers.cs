@@ -12,11 +12,32 @@ namespace TestAlgoritmos
         
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestCargarArticulos()
         {
-
+            String rutaArticulos = "../../Data/Articulos.csv";
+            
             
 
+
         }
+
+        [TestMethod]
+        public void TestCargarClientes()
+        {
+
+
+
+        }
+
+        [TestMethod]
+        public void TestCargarVentas()
+        {
+    
+                
+
+        }
+
+
+
     }
 }
