@@ -8,14 +8,14 @@ namespace FuerzaBruta
 {
     class Program
     {
-       private Controlador controlador;
-
-        public static Controlador Controlador { get; private set; }
-
+      
         static void Main(string[] args)
         {
-            Controlador = new Controlador();
-
+            Controlador controlador = new Controlador();
+            Console.WriteLine("Numero de articulos: "+controlador.Articulos.Count());
+            Console.WriteLine("Numero de clientes: " + controlador.Clientes.Count());
+            Console.WriteLine("Numero de ventas: " + controlador.Ventas.Count());
+            Console.ReadLine();
         }
     }
 }
