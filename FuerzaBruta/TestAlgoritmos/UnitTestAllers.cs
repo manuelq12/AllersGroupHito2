@@ -8,8 +8,9 @@ namespace TestAlgoritmos
     public class UnitTestAllers
     {
 
+        Controlador relacionControlador = new Controlador();
         
-        
+
         [TestMethod]
         public void TestMethod1()
         {
