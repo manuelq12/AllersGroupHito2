@@ -7,50 +7,32 @@ namespace TestAlgoritmos
     [TestClass]
     public class UnitTestAllers
     {
-
-        Controlador relacionControlador = new Controlador();
-
+        Controlador controlador;
+      public void Escenario()
+        {
+            controlador = new Controlador();
+        }
 
         [TestMethod]
         public void TestCargarArticulos()
         {
-            try
-            {
-                relacionControlador.cargarArticulosP();
-                Assert.IsTrue(true);
-            }
-            catch
-            {
-                Assert.Fail();
-            }     
+            Escenario();
+            Assert.IsNotNull(controlador.Articulos);
         }
 
         [TestMethod]
         public void TestCargarClientes()
         {
-            try
-            {
-                relacionControlador.cargarClientesP();
-                Assert.IsTrue(true);
-            }
-            catch
-            {
-                Assert.Fail();
-            }
+            Escenario();
+            Assert.IsNotNull(controlador.Clientes);
+
         }
 
         [TestMethod]
         public void TestCargarVentas()
         {
-            try
-            {
-                relacionControlador.cargarVentasP();
-                Assert.IsTrue(true);
-            }
-            catch
-            {
-                Assert.Fail();
-            }
+            Escenario();
+            Assert.IsNotNull(controlador.Ventas);
         }
 
 
