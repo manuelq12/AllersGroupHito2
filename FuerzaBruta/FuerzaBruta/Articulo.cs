@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FuerzaBruta
 {
-    public class Articulos
+    public class Articulo
     {
         private int itemCode;
         private String itemName;
         private int itemClasification;
 
-        public Articulos(int ItemCode, string ItemName, int ItemClasification)
+        public Articulo(int ItemCode, string ItemName, int ItemClasification)
         {
             itemCode = ItemCode;
             itemName = ItemName;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FuerzaBruta
 {
-    public class Clientes
+    public class Cliente
     {
         private String cardCode;
         private String groupName;
@@ -14,7 +14,7 @@ namespace FuerzaBruta
         private String department;
         private String paymentGroup;
 
-        public Clientes(string cardCode, string groupName, string city, string department, string paymentGroup)
+        public Cliente(string cardCode, string groupName, string city, string department, string paymentGroup)
         {
             this.cardCode = cardCode;
             this.groupName = groupName;

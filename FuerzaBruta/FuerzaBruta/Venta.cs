@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FuerzaBruta
 {
-    public class Ventas
+    public class Venta
     {
         private String cardCode;
         private String docNum;
@@ -16,7 +16,7 @@ namespace FuerzaBruta
         private int precio;
         private int totalVenta;
 
-        public Ventas(string cardCode, string docNum, DateTime docDate, string itemCode, int cantidad, int precio, int totalVenta)
+        public Venta(string cardCode, string docNum, DateTime docDate, string itemCode, int cantidad, int precio, int totalVenta)
         {
             this.cardCode = cardCode;
             this.docNum = docNum;
