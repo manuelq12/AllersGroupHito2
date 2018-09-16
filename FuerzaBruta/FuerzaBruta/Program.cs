@@ -13,6 +13,7 @@ namespace FuerzaBruta
         {
             //listo
 
+
             Controlador controlador = new Controlador();
             Console.WriteLine("Numero de articulos: "+controlador.Articulos.Count());
             Console.WriteLine("Numero de clientes: " + controlador.Clientes.Count());
