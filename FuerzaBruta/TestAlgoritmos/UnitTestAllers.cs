@@ -9,67 +9,49 @@ namespace TestAlgoritmos
     {
 
         Controlador relacionControlador = new Controlador();
-        
+
 
         [TestMethod]
         public void TestCargarArticulos()
         {
-            String rutaArticulos = "../../BasesDatos/Articulos.csv";
-
             try
             {
-            relacionControlador.cargarArticulosP(rutaArticulos);
+                relacionControlador.cargarArticulosP();
                 Assert.IsTrue(true);
             }
             catch
             {
-                Assert.IsTrue(false);
-            }
-            
-
-
+                Assert.Fail();
+            }     
         }
 
         [TestMethod]
         public void TestCargarClientes()
         {
-            String rutaCliente = "../../BasesDatos/Clientes.csv";
             try
             {
-                relacionControlador.cargarClientesP(rutaCliente);
+                relacionControlador.cargarClientesP();
                 Assert.IsTrue(true);
             }
             catch
             {
-                Assert.IsTrue(false);
+                Assert.Fail();
             }
-            
-
-
-
         }
 
         [TestMethod]
         public void TestCargarVentas()
         {
-
-            String rutaVentas = "../../BasesDatos /Ventas.csv";
-
             try
             {
-                relacionControlador.cargarVentasP(rutaVentas);
+                relacionControlador.cargarVentasP();
                 Assert.IsTrue(true);
             }
             catch
             {
-                Assert.IsTrue(false);
+                Assert.Fail();
             }
-
-
-
-
         }
-
 
 
     }
