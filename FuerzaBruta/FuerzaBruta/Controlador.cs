@@ -126,12 +126,12 @@ namespace FuerzaBruta
         // Para probarlos en UnitTest
 
 
-        public void cargarVentasP()
+        public void cargarVentasP(string ruta)
         {
             String line;
             try
             {
-                StreamReader sr = new StreamReader(rutaVentas);
+                StreamReader sr = new StreamReader(ruta);
                 line = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -158,12 +158,12 @@ namespace FuerzaBruta
         }
 
 
-        public  void cargarClientesP()
+        public  void cargarClientesP(String ruta)
         {
             String line;
             try
             {
-                StreamReader sr = new StreamReader(rutaClientes);
+                StreamReader sr = new StreamReader(ruta);
                 line = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -186,12 +186,12 @@ namespace FuerzaBruta
             }
         }
 
-        public  void cargarArticulosP()
+        public  void cargarArticulosP(String ruta)
         {
             String line;
             try
             {
-                StreamReader sr = new StreamReader(rutaArticulos);
+                StreamReader sr = new StreamReader(ruta);
                 line = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
                 {

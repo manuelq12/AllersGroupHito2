@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Articulos.csv" />
+    <None Include="Data\Clientes.csv" />
+    <None Include="Data\Ventas.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
