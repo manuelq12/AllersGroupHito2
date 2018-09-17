@@ -74,6 +74,7 @@ namespace FuerzaBruta
             {
                 comb.Add(new List<int>(c));
                 return;
+
             }
             for (int i = 0; i < arr.Length; i++)
             {
