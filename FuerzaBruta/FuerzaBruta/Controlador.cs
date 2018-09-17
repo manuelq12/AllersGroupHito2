@@ -36,8 +36,8 @@ namespace FuerzaBruta
 
 
             CargarDatos();
-            Console.WriteLine("Primera combinacion: " + repetecionEnVentas(Combinacion()[0]));
-
+           // Console.WriteLine("Primera combinacion: " + repetecionEnVentas(Combinacion()[0]));
+            cantRepeticionesPorGrupo(Combinacion());
 
         }
 
@@ -200,7 +200,7 @@ namespace FuerzaBruta
             int aux = 0;
             for (int i = 0; i < ventas.Count(); i++)
             {
-                if (ventas[i].ItemCode.Equals(combinacion[aux]+""))
+                if (ventas[i].Cantidad.Equals(combinacion[aux]+""))
                 {
                     aux++;
                     if (aux == combinacion.Count())
@@ -220,7 +220,7 @@ namespace FuerzaBruta
         public int[] MasFrecuentes()
         {
             List<int> todos = new List<int>();
-            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
+            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.Cantidad)));
             var group = todos.GroupBy(i => i);
             int max1 = 0;
             int id1 = 0;

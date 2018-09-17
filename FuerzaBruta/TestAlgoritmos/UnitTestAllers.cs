@@ -8,7 +8,7 @@ namespace TestAlgoritmos
     public class UnitTestAllers
     {
         Controlador controlador;
-      public void Escenario()
+        public void Escenario()
         {
             controlador = new Controlador();
         }
@@ -35,6 +35,14 @@ namespace TestAlgoritmos
             Assert.IsNotNull(controlador.Ventas);
         }
 
+
+        [TestMethod]
+        public void TestCombinar()
+        {
+            Escenario();
+            Assert.IsNotNull(controlador.Combinacion());
+
+        }
 
     }
 }
