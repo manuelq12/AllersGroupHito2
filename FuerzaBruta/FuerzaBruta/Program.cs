@@ -12,9 +12,9 @@ namespace FuerzaBruta
         static void Main(string[] args)
         {
             Controlador controlador = new Controlador();
-            Console.WriteLine("Numero de articulos: "+controlador.Articulos.Count());
-            Console.WriteLine("Numero de clientes: " + controlador.Clientes.Count());
-            Console.WriteLine("Numero de ventas: " + controlador.Ventas.Count());
+            List<List<Articulo>> resultado = controlador.Combinacion();
+            resultado.ForEach(a => controlador.MostrarCombinaciones(a));
+            Console.WriteLine(resultado.Count());
             Console.ReadLine();
         }
     }

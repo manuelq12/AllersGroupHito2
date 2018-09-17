@@ -22,5 +22,6 @@ namespace FuerzaBruta
         public int ItemCode { get => itemCode; set => itemCode = value; }
         public string ItemName { get => itemName; set => itemName = value; }
         public int ItemClasification { get => itemClasification; set => itemClasification = value; }
+        
     }
 }
