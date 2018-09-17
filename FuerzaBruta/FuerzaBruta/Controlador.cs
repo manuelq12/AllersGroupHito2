@@ -48,7 +48,11 @@ namespace FuerzaBruta
 
             {
 
-                int[] arr = { 10, 50, 3, 1, 2 };
+                int[] arr = new int[articulos.Count];
+                for(int n = 0; n < arr.Length; n++) {
+                    arr[n] = articulos.ElementAt(n).ItemCode;
+                }
+               
                 used= new bool[arr.Length];
                 used.ToList().ForEach(r=> r=false);
                 comb = new List<List<int>>();
@@ -158,10 +162,10 @@ namespace FuerzaBruta
                         String cardCode = todo[0];
                         String docNum = todo[1];
                         String[] tiempo = todo[2].Split('/');
-                        int ano= Convert.ToInt32(tiempo[2]);
-                        int mes=Convert.ToInt32(tiempo[1]);
-                        int dia= Convert.ToInt32(tiempo[0]);
-                        DateTime docDate = new DateTime(ano,mes,dia);
+                        int ano = Convert.ToInt32(tiempo[2]);
+                        int mes = Convert.ToInt32(tiempo[1]);
+                        int dia = Convert.ToInt32(tiempo[0]);
+                        DateTime docDate = new DateTime(ano, mes, dia);
 
                         String itemCode = todo[3];
                         int cantidad = Convert.ToInt32(todo[4]);
@@ -172,49 +176,12 @@ namespace FuerzaBruta
                 }
                 sr.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar las Ventas");
             }
-          
-        }
-        public List<List<Articulo>> Combinacion()
-        {
-            List<List<Articulo>> resultado = new List<List<Articulo>>();
-            int tamanho = articulos.Count();
-            for(int c = 0; c < 500; c++)
-            {
-                List<Articulo> combinacion = new List<Articulo>();
-                int h = c + 1;
-                int a = h + 1;
-                int m = a + 1;
-                int b = m + 1;
 
-                if (h < 500 - 1 && a < 500 - 2 && m < 500-3 && b < 500-4)
-                {
-                    combinacion.Add(articulos.ElementAt(c));
-                    combinacion.Add(articulos.ElementAt(h));
-                    combinacion.Add(articulos.ElementAt(a));
-                    combinacion.Add(articulos.ElementAt(m));
-                    combinacion.Add(articulos.ElementAt(b));
-                    resultado.Add(combinacion);
-
-                }               
-            }
-
-            return resultado;
-        }
-
-        public void MostrarCombinaciones (List<Articulo> n)
-        {
-            String combinaciones = "";
-            int tamanho = n.Count();
-            for(int i = 0; i < tamanho; i++)
-            {
-                combinaciones += (i + 1) + ". " + n.ElementAt(i).ItemCode + "\n";
-            }
-            Console.WriteLine(combinaciones);
         }
     }
 }
