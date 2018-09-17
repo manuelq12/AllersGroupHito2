@@ -16,7 +16,7 @@ namespace FuerzaBruta
         private  List<Cliente> clientes;
         private  List<Venta> ventas;
 
-        List<List<int>> comb;
+        List<List<Articulo>> combinaciones;
         bool[] used;
 
 
@@ -32,7 +32,7 @@ namespace FuerzaBruta
             clientes = new List<Cliente>();
             ventas = new List<Venta>();
 
-
+            combinaciones = new List<List<Articulo>>();
 
 
             CargarDatos();
@@ -47,37 +47,33 @@ namespace FuerzaBruta
             CargarVentas();
 
             {
+                Console.WriteLine(articulos.Count());
 
-                int[] arr = new int[articulos.Count];
-                for(int n = 0; n < arr.Length; n++) {
-                    arr[n] = articulos.ElementAt(n).ItemCode;
-                }
-               
-                used= new bool[arr.Length];
-                used.ToList().ForEach(r=> r=false);
-                comb = new List<List<int>>();
-                List<int> c = new List<int>();
-                GetComb(arr, 0, c);
-
-                foreach (var item in comb)
-                {
-                    foreach (var x in item)
-                    {
-                        Console.Write(x + ",");
-                    }
-                    Console.WriteLine("");
-                }
+                //for (int i = 0; i < articulos.Count() -4; i++)
+                //{
+                //int cero = i;
+                //int uno = i+1;
+                //int dos = i+2;
+                //int tres = i+3;
+                //int cuatro = i+4;
+                //Articulo[] arr = { articulos[cero], articulos[uno], articulos[dos], articulos[tres], articulos[cuatro]};
+                Articulo[] arr = articulos.ToArray();
+                used = new bool[arr.Length];
+                    used.ToList().ForEach(r => r = false);
+                    List<Articulo> c = new List<Articulo>();
+                    GetComb(arr, 0, c);
+                //}
+                Console.WriteLine(combinaciones.Count());
             }
-            
-
         }
-        public void GetComb(int[] arr, int colindex, List<int> c)
+        public void GetComb(Articulo[] arr, int colindex, List<Articulo> c)
         {
 
             if (colindex >= arr.Length)
             {
-                comb.Add(new List<int>(c));
+                combinaciones.Add(new List<Articulo>(c));
                 return;
+
             }
             for (int i = 0; i < arr.Length; i++)
             {
@@ -162,10 +158,10 @@ namespace FuerzaBruta
                         String cardCode = todo[0];
                         String docNum = todo[1];
                         String[] tiempo = todo[2].Split('/');
-                        int ano = Convert.ToInt32(tiempo[2]);
-                        int mes = Convert.ToInt32(tiempo[1]);
-                        int dia = Convert.ToInt32(tiempo[0]);
-                        DateTime docDate = new DateTime(ano, mes, dia);
+                        int ano= Convert.ToInt32(tiempo[2]);
+                        int mes=Convert.ToInt32(tiempo[1]);
+                        int dia= Convert.ToInt32(tiempo[0]);
+                        DateTime docDate = new DateTime(ano,mes,dia);
 
                         String itemCode = todo[3];
                         int cantidad = Convert.ToInt32(todo[4]);
@@ -176,12 +172,12 @@ namespace FuerzaBruta
                 }
                 sr.Close();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar las Ventas");
             }
-
         }
+
     }
 }
