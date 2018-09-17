@@ -192,6 +192,29 @@ namespace FuerzaBruta
             }
             return resultado;
         }
+        public int repetecionEnVentas(List<int> combinacion)
+        {
+            int contador = 0;
+            int aux = 0;
+            for (int i = 0; i < ventas.Count(); i++)
+            {
+                if (ventas[i].ItemCode.Equals(combinacion[aux] + ""))
+                {
+                    aux++;
+                    if (aux == combinacion.Count())
+                    {
+                        aux = 0;
+                        contador++;
+                    }
+                }
+                else aux = 0;
+
+            }
+            return contador;
+        }
+
+
+        //Método supremamente extenso.
         public int[] MasFrecuentes()
         {
             List<int> todos = new List<int>();
