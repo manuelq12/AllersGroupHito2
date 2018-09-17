@@ -16,6 +16,8 @@ namespace FuerzaBruta
         private  List<Cliente> clientes;
         private  List<Venta> ventas;
 
+        List<List<int>> comb;
+        bool[] used;
 
 
         public  List<Articulo> Articulos { get => articulos; set => articulos = value; }
@@ -43,7 +45,50 @@ namespace FuerzaBruta
             CargarArticulos();
             CargarClientes();
             CargarVentas();
+
+            {
+
+                int[] arr = { 10, 50, 3, 1, 2 };
+                used= new bool[arr.Length];
+                used.ToList().ForEach(r=> r=false);
+                comb = new List<List<int>>();
+                List<int> c = new List<int>();
+                GetComb(arr, 0, c);
+
+                foreach (var item in comb)
+                {
+                    foreach (var x in item)
+                    {
+                        Console.Write(x + ",");
+                    }
+                    Console.WriteLine("");
+                }
+            }
+            
+
         }
+        public void GetComb(int[] arr, int colindex, List<int> c)
+        {
+
+            if (colindex >= arr.Length)
+            {
+                comb.Add(new List<int>(c));
+                return;
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (!used[i])
+                {
+                    used[i] = true;
+                    c.Add(arr[i]);
+                    GetComb(arr, colindex + 1, c);
+                    c.RemoveAt(c.Count - 1);
+                    used[i] = false;
+                }
+            }
+        }
+
+
         public void CargarArticulos()
         {
             String line;
