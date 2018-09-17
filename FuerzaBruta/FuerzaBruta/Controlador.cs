@@ -46,47 +46,8 @@ namespace FuerzaBruta
             CargarClientes();
             CargarVentas();
 
-            {
-                Console.WriteLine(articulos.Count());
-
-                //for (int i = 0; i < articulos.Count() -4; i++)
-                //{
-                //int cero = i;
-                //int uno = i+1;
-                //int dos = i+2;
-                //int tres = i+3;
-                //int cuatro = i+4;
-                //Articulo[] arr = { articulos[cero], articulos[uno], articulos[dos], articulos[tres], articulos[cuatro]};
-                Articulo[] arr = articulos.ToArray();
-                used = new bool[arr.Length];
-                    used.ToList().ForEach(r => r = false);
-                    List<Articulo> c = new List<Articulo>();
-                    GetComb(arr, 0, c);
-                //}
-                Console.WriteLine(combinaciones.Count());
-            }
         }
-        public void GetComb(Articulo[] arr, int colindex, List<Articulo> c)
-        {
 
-            if (colindex >= arr.Length)
-            {
-                combinaciones.Add(new List<Articulo>(c));
-                return;
-
-            }
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (!used[i])
-                {
-                    used[i] = true;
-                    c.Add(arr[i]);
-                    GetComb(arr, colindex + 1, c);
-                    c.RemoveAt(c.Count - 1);
-                    used[i] = false;
-                }
-            }
-        }
 
 
         public void CargarArticulos()
@@ -178,6 +139,9 @@ namespace FuerzaBruta
                 throw new Exception("Error al cargar las Ventas");
             }
         }
+
+
+
 
     }
 }
