@@ -12,17 +12,17 @@ namespace FuerzaBruta
         public const String rutaArticulos = "../../Data/Articulos.csv";
         public const String rutaClientes = "../../Data/Clientes.csv";
         public const String rutaVentas = "../../Data/Ventas.csv";
-        private  List<Articulo> articulos;
-        private  List<Cliente> clientes;
-        private  List<Venta> ventas;
+        private List<Articulo> articulos;
+        private List<Cliente> clientes;
+        private List<Venta> ventas;
 
         List<List<Articulo>> combinaciones;
         bool[] used;
 
 
-        public  List<Articulo> Articulos { get => articulos; set => articulos = value; }
-        public  List<Cliente> Clientes { get => clientes; set => clientes = value; }
-        public  List<Venta> Ventas { get => ventas; set => ventas = value; }
+        public List<Articulo> Articulos { get => articulos; set => articulos = value; }
+        public List<Cliente> Clientes { get => clientes; set => clientes = value; }
+        public List<Venta> Ventas { get => ventas; set => ventas = value; }
 
 
         public Controlador()
@@ -36,6 +36,7 @@ namespace FuerzaBruta
 
 
             CargarDatos();
+            Console.WriteLine("Primera combinacion: " + repetecionEnVentas(Combinacion()[0]));
 
 
         }
@@ -119,10 +120,10 @@ namespace FuerzaBruta
                         String cardCode = todo[0];
                         String docNum = todo[1];
                         String[] tiempo = todo[2].Split('/');
-                        int ano= Convert.ToInt32(tiempo[2]);
-                        int mes=Convert.ToInt32(tiempo[1]);
-                        int dia= Convert.ToInt32(tiempo[0]);
-                        DateTime docDate = new DateTime(ano,mes,dia);
+                        int ano = Convert.ToInt32(tiempo[2]);
+                        int mes = Convert.ToInt32(tiempo[1]);
+                        int dia = Convert.ToInt32(tiempo[0]);
+                        DateTime docDate = new DateTime(ano, mes, dia);
 
                         String itemCode = todo[3];
                         int cantidad = Convert.ToInt32(todo[4]);
@@ -133,7 +134,7 @@ namespace FuerzaBruta
                 }
                 sr.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar las Ventas");
@@ -145,9 +146,10 @@ namespace FuerzaBruta
             int tamanho = n.Count();
             for (int i = 0; i < tamanho; i++)
             {
-                mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n"; 
+                mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n";
             }
-            Console.WriteLine(mensaje);
+            //Console.WriteLine(mensaje);
+          
         }
 
         public List<List<int>> Combinacion()
@@ -155,17 +157,17 @@ namespace FuerzaBruta
             List<List<int>> resultado = new List<List<int>>();
             int[] code = MasFrecuentes();
 
-            for(int i = 0; i < code.Length; i++)
+            for (int i = 0; i < code.Length; i++)
             {
-                for (int j = i+1; j < code.Length; j++)
+                for (int j = i + 1; j < code.Length; j++)
                 {
-                    for (int k = j+1; k < code.Length; k++)
+                    for (int k = j + 1; k < code.Length; k++)
                     {
-                        for (int l = k+1; l < code.Length; l++)
+                        for (int l = k + 1; l < code.Length; l++)
                         {
-                            for (int m = l+1; m < code.Length; m++)
+                            for (int m = l + 1; m < code.Length; m++)
                             {
-                                for (int n = m+1; n < code.Length; n++)
+                                for (int n = m + 1; n < code.Length; n++)
                                 {
                                     for (int o = n + 1; o < code.Length; o++)
                                     {
@@ -198,7 +200,7 @@ namespace FuerzaBruta
             int aux = 0;
             for (int i = 0; i < ventas.Count(); i++)
             {
-                if (ventas[i].ItemCode.Equals(combinacion[aux] + ""))
+                if (ventas[i].ItemCode.Equals(combinacion[aux]+""))
                 {
                     aux++;
                     if (aux == combinacion.Count())
@@ -407,7 +409,7 @@ namespace FuerzaBruta
             }
             foreach (IGrouping<int, int> n in group)
             {
-                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 && 
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
                     n.Key != id10 && n.Key != -1)
                 {
                     temp = n.Count();
@@ -520,7 +522,7 @@ namespace FuerzaBruta
             foreach (IGrouping<int, int> n in group)
             {
                 if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
-                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18 
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
                     && n.Key != -1)
                 {
                     temp = n.Count();
@@ -577,7 +579,7 @@ namespace FuerzaBruta
 
                 }
             }
-                 foreach (IGrouping<int, int> n in group)
+            foreach (IGrouping<int, int> n in group)
             {
                 if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
                     n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
@@ -626,7 +628,7 @@ namespace FuerzaBruta
             {
                 if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
                     n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
-                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != id25 &&  n.Key != -1)
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != id25 && n.Key != -1)
                 {
                     temp = n.Count();
                     if (temp < max25 && temp > max26)
@@ -700,5 +702,26 @@ namespace FuerzaBruta
 
             return code;
         }
+
+
+        public int[,] cantRepeticionesPorGrupo(List<List<int>> grupos)
+        {
+            
+            int[,] matriz = new int[grupos.Count(), 2];
+            
+            for (int i=1; i<=grupos.Count();i++)
+            {
+               
+                int a= repetecionEnVentas(grupos[i-1]);
+
+
+                Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
+
+            }
+
+
+            return matriz;
+        }
+
     }
 }
