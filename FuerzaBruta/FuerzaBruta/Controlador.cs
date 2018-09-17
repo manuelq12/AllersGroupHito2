@@ -139,9 +139,543 @@ namespace FuerzaBruta
                 throw new Exception("Error al cargar las Ventas");
             }
         }
+        public void ImprimirCombinaciones(List<int> n)
+        {
+            String mensaje = "";
+            int tamanho = n.Count();
+            for (int i = 0; i < tamanho; i++)
+            {
+                mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n"; 
+            }
+            Console.WriteLine(mensaje);
+        }
 
+        public List<List<int>> Combinacion()
+        {
+            List<List<int>> resultado = new List<List<int>>();
+            int[] code = MasFrecuentes();
 
+            for(int i = 0; i < code.Length; i++)
+            {
+                for (int j = i+1; j < code.Length; j++)
+                {
+                    for (int k = j+1; k < code.Length; k++)
+                    {
+                        for (int l = k+1; l < code.Length; l++)
+                        {
+                            for (int m = l+1; m < code.Length; m++)
+                            {
+                                for (int n = m+1; n < code.Length; n++)
+                                {
+                                    for (int o = n + 1; o < code.Length; o++)
+                                    {
+                                        List<int> combinacion = new List<int>();
+                                        combinacion.Add(code[i]);
+                                        combinacion.Add(code[j]);
+                                        combinacion.Add(code[k]);
+                                        combinacion.Add(code[l]);
+                                        combinacion.Add(code[m]);
+                                        combinacion.Add(code[n]);
+                                        combinacion.Add(code[o]);
+                                        resultado.Add(combinacion);
+                                    }
 
+                                }
 
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+            return resultado;
+        }
+        public int[] MasFrecuentes()
+        {
+            List<int> todos = new List<int>();
+            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
+            var group = todos.GroupBy(i => i);
+            int max1 = 0;
+            int id1 = 0;
+            int max2 = -2;
+            int id2 = 0;
+            int max3 = -4;
+            int id3 = 0;
+            int max4 = 0;
+            int id4 = 0;
+            int max5 = -2;
+            int id5 = 0;
+            int max6 = -4;
+            int id6 = 0;
+            int max7 = 0;
+            int id7 = 0;
+            int max8 = -2;
+            int id8 = 0;
+            int max9 = -4;
+            int id9 = 0;
+            int max10 = 0;
+            int id10 = 0;
+            int max11 = -2;
+            int id11 = 0;
+            int max12 = -4;
+            int id12 = 0;
+            int max13 = 0;
+            int id13 = 0;
+            int max14 = -2;
+            int id14 = 0;
+            int max15 = -4;
+            int id15 = 0;
+            int max16 = 0;
+            int id16 = 0;
+            int max17 = -2;
+            int id17 = 0;
+            int max18 = -4;
+            int id18 = 0;
+            int max19 = 0;
+            int id19 = 0;
+            int max20 = -2;
+            int id20 = 0;
+            int max21 = -2;
+            int id21 = 0;
+            int max22 = -2;
+            int id22 = 0;
+            int max23 = -2;
+            int id23 = 0;
+            int max24 = 0;
+            int id24 = -2;
+            int max25 = 0;
+            int id25 = -2;
+            int max26 = 0;
+            int id26 = -2;
+            int max27 = 0;
+            int id27 = -2;
+            int max28 = 0;
+            int id28 = -2;
+            int temp = -30;
+            foreach (IGrouping<int, int> n in group)
+            {
+                temp = n.Count();
+                if (n.Key != -1)
+                {
+                    if (temp > max1)
+                    {
+                        max1 = temp;
+                        id1 = n.Key;
+                    }
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                temp = n.Count();
+                if (n.Key != id1 && n.Key != -1)
+                {
+                    if (temp < max1 && temp > max2)
+                    {
+                        max2 = temp;
+                        id2 = n.Key;
+                    }
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max2 && temp > max3)
+                    {
+                        max3 = temp;
+                        id3 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max3 && temp > max4)
+                    {
+                        max4 = temp;
+                        id4 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max4 && temp > max5)
+                    {
+                        max5 = temp;
+                        id5 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max5 && temp > max6)
+                    {
+                        max6 = temp;
+                        id6 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max6 && temp > max7)
+                    {
+                        max7 = temp;
+                        id7 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max7 && temp > max8)
+                    {
+                        max8 = temp;
+                        id8 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max8 && temp > max9)
+                    {
+                        max9 = temp;
+                        id9 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max9 && temp > max10)
+                    {
+                        max10 = temp;
+                        id10 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 && 
+                    n.Key != id10 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max10 && temp > max11)
+                    {
+                        max11 = temp;
+                        id11 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max11 && temp > max12)
+                    {
+                        max12 = temp;
+                        id12 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max12 && temp > max13)
+                    {
+                        max13 = temp;
+                        id13 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max13 && temp > max14)
+                    {
+                        max14 = temp;
+                        id14 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max14 && temp > max15)
+                    {
+                        max15 = temp;
+                        id15 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max15 && temp > max16)
+                    {
+                        max16 = temp;
+                        id16 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max16 && temp > max17)
+                    {
+                        max17 = temp;
+                        id17 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max17 && temp > max18)
+                    {
+                        max18 = temp;
+                        id18 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18 
+                    && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max18 && temp > max19)
+                    {
+                        max19 = temp;
+                        id19 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max19 && temp > max20)
+                    {
+                        max20 = temp;
+                        id20 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max20 && temp > max21)
+                    {
+                        max21 = temp;
+                        id21 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max21 && temp > max22)
+                    {
+                        max22 = temp;
+                        id22 = n.Key;
+                    }
+
+                }
+            }
+                 foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max22 && temp > max23)
+                    {
+                        max23 = temp;
+                        id23 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max23 && temp > max24)
+                    {
+                        max24 = temp;
+                        id24 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max24 && temp > max25)
+                    {
+                        max25 = temp;
+                        id25 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != id25 &&  n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max25 && temp > max26)
+                    {
+                        max26 = temp;
+                        id26 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != id25 && n.Key != id26 && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max26 && temp > max27)
+                    {
+                        max27 = temp;
+                        id27 = n.Key;
+                    }
+
+                }
+            }
+            foreach (IGrouping<int, int> n in group)
+            {
+                if (n.Key != id1 && n.Key != id2 && n.Key != id3 && n.Key != id4 && n.Key != id5 && n.Key != id6 && n.Key != id7 && n.Key != id8 && n.Key != id9 &&
+                    n.Key != id10 && n.Key != id11 && n.Key != id12 && n.Key != id13 && n.Key != id14 && n.Key != id15 && n.Key != id16 && n.Key != id17 && n.Key != id18
+                    && n.Key != id19 && n.Key != id20 && n.Key != id21 && n.Key != id22 && n.Key != id23 && n.Key != id24 && n.Key != id25 && n.Key != id26 && n.Key != id27
+                    && n.Key != -1)
+                {
+                    temp = n.Count();
+                    if (temp < max27 && temp > max28)
+                    {
+                        max28 = temp;
+                        id28 = n.Key;
+                    }
+
+                }
+            }
+            int[] code = new int[28];
+            code[0] = id1;
+            code[1] = id2;
+            code[2] = id3;
+            code[3] = id4;
+            code[4] = id5;
+            code[5] = id6;
+            code[6] = id7;
+            code[7] = id8;
+            code[8] = id9;
+            code[9] = id10;
+            code[10] = id11;
+            code[11] = id12;
+            code[12] = id13;
+            code[13] = id14;
+            code[14] = id15;
+            code[15] = id16;
+            code[16] = id17;
+            code[17] = id18;
+            code[18] = id19;
+            code[19] = id20;
+            code[20] = id21;
+            code[21] = id22;
+            code[22] = id23;
+            code[23] = id24;
+            code[24] = id25;
+            code[25] = id26;
+            code[26] = id27;
+            code[27] = id28;
+
+            return code;
+        }
     }
 }
