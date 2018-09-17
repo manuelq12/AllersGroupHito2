@@ -16,7 +16,7 @@ namespace FuerzaBruta
         private  List<Cliente> clientes;
         private  List<Venta> ventas;
 
-        List<List<int>> comb;
+        List<List<Articulo>> combinaciones;
         bool[] used;
 
 
@@ -32,7 +32,7 @@ namespace FuerzaBruta
             clientes = new List<Cliente>();
             ventas = new List<Venta>();
 
-
+            combinaciones = new List<List<Articulo>>();
 
 
             CargarDatos();
@@ -47,32 +47,31 @@ namespace FuerzaBruta
             CargarVentas();
 
             {
+                Console.WriteLine(articulos.Count());
 
-                int[] arr = { 10, 50, 3, 1, 2 };
-                used= new bool[arr.Length];
-                used.ToList().ForEach(r=> r=false);
-                comb = new List<List<int>>();
-                List<int> c = new List<int>();
-                GetComb(arr, 0, c);
-
-                foreach (var item in comb)
-                {
-                    foreach (var x in item)
-                    {
-                        Console.Write(x + ",");
-                    }
-                    Console.WriteLine("");
-                }
+                //for (int i = 0; i < articulos.Count() -4; i++)
+                //{
+                //int cero = i;
+                //int uno = i+1;
+                //int dos = i+2;
+                //int tres = i+3;
+                //int cuatro = i+4;
+                //Articulo[] arr = { articulos[cero], articulos[uno], articulos[dos], articulos[tres], articulos[cuatro]};
+                Articulo[] arr = articulos.ToArray();
+                used = new bool[arr.Length];
+                    used.ToList().ForEach(r => r = false);
+                    List<Articulo> c = new List<Articulo>();
+                    GetComb(arr, 0, c);
+                //}
+                Console.WriteLine(combinaciones.Count());
             }
-            
-
         }
-        public void GetComb(int[] arr, int colindex, List<int> c)
+        public void GetComb(Articulo[] arr, int colindex, List<Articulo> c)
         {
 
             if (colindex >= arr.Length)
             {
-                comb.Add(new List<int>(c));
+                combinaciones.Add(new List<Articulo>(c));
                 return;
 
             }
