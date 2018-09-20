@@ -17,7 +17,7 @@ namespace FuerzaBruta
         private List<Venta> ventas;
 
         List<List<Articulo>> combinaciones;
-        bool[] used;
+
 
 
         public List<Articulo> Articulos { get => articulos; set => articulos = value; }
@@ -31,14 +31,8 @@ namespace FuerzaBruta
             articulos = new List<Articulo>();
             clientes = new List<Cliente>();
             ventas = new List<Venta>();
-
             combinaciones = new List<List<Articulo>>();
-
-
-            CargarDatos();
-           // Console.WriteLine("Primera combinacion: " + repetecionEnVentas(Combinacion()[0]));
-            cantRepeticionesPorGrupo(Combinacion());
-
+           cantRepeticionesPorGrupo(Combinacion());
         }
 
         public void CargarDatos()
@@ -48,8 +42,6 @@ namespace FuerzaBruta
             CargarVentas();
 
         }
-
-
 
         public void CargarArticulos()
         {
@@ -74,7 +66,6 @@ namespace FuerzaBruta
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar los articulos");
             }
         }
@@ -108,8 +99,12 @@ namespace FuerzaBruta
         public void CargarVentas()
         {
             String line;
+            string uno="";
+            string dos="";
+            string tres="";
             try
             {
+
                 StreamReader sr = new StreamReader(rutaVentas);
                 line = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
@@ -125,18 +120,21 @@ namespace FuerzaBruta
                         int dia = Convert.ToInt32(tiempo[0]);
                         DateTime docDate = new DateTime(ano, mes, dia);
 
-                        String itemCode = todo[3];
-                        int cantidad = Convert.ToInt32(todo[4]);
-                        int precio = Convert.ToInt32(todo[5]);
-                        int totalVenta = Convert.ToInt32(todo[6]);
-                        ventas.Add(new Venta(cardCode, docNum, docDate, itemCode, cantidad, precio, totalVenta));
+                        String docTotal = todo[3];
+                        String itemCode = todo[4];
+                        uno = todo[5];
+                        dos = todo[6];
+                        tres = todo[7];
+                        int cantidad = Convert.ToInt32(todo[5]);
+                        int precio = Convert.ToInt32(todo[6]);
+                        double totalVenta = Convert.ToInt64(todo[7]);
+                        ventas.Add(new Venta(cardCode, docNum, docDate,docTotal, itemCode, cantidad, precio, totalVenta));
                     }
                 }
                 sr.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 throw new Exception("Error al cargar las Ventas");
             }
         }
@@ -148,7 +146,6 @@ namespace FuerzaBruta
             {
                 mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n";
             }
-            //Console.WriteLine(mensaje);
           
         }
 
@@ -200,7 +197,7 @@ namespace FuerzaBruta
             int aux = 0;
             for (int i = 0; i < ventas.Count(); i++)
             {
-                if (ventas[i].Cantidad.Equals(combinacion[aux]+""))
+                if (ventas[i].ItemCode.Equals(combinacion[aux]+""))
                 {
                     aux++;
                     if (aux == combinacion.Count())
@@ -220,7 +217,7 @@ namespace FuerzaBruta
         public int[] MasFrecuentes()
         {
             List<int> todos = new List<int>();
-            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.Cantidad)));
+            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
             var group = todos.GroupBy(i => i);
             int max1 = 0;
             int id1 = 0;
@@ -702,17 +699,15 @@ namespace FuerzaBruta
 
             return code;
         }
-
-
         public int[,] cantRepeticionesPorGrupo(List<List<int>> grupos)
         {
-            
+
             int[,] matriz = new int[grupos.Count(), 2];
-            
-            for (int i=1; i<=grupos.Count();i++)
+
+            for (int i = 1; i <= grupos.Count(); i++)
             {
-               
-                int a= repetecionEnVentas(grupos[i-1]);
+
+                int a = repetecionEnVentas(grupos[i - 1]);
 
 
                 Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
@@ -722,6 +717,5 @@ namespace FuerzaBruta
 
             return matriz;
         }
-
     }
 }

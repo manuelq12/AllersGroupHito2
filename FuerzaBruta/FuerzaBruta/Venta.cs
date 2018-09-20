@@ -11,16 +11,18 @@ namespace FuerzaBruta
         private String cardCode;
         private String docNum;
         private DateTime docDate;
+        private string docTotal;
         private String itemCode;
         private int cantidad;
         private int precio;
-        private int totalVenta;
+        private double totalVenta;
 
-        public Venta(string cardCode, string docNum, DateTime docDate, string itemCode, int cantidad, int precio, int totalVenta)
+        public Venta(string cardCode, string docNum, DateTime docDate,String docTotal, string itemCode, int cantidad, int precio, double totalVenta)
         {
             this.cardCode = cardCode;
             this.docNum = docNum;
             this.docDate = docDate;
+            this.docTotal = docTotal;
             this.itemCode = itemCode;
             this.cantidad = cantidad;
             this.precio = precio;
@@ -33,6 +35,7 @@ namespace FuerzaBruta
         public string ItemCode { get => itemCode; set => itemCode = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
         public int Precio { get => precio; set => precio = value; }
-        public int TotalVenta { get => totalVenta; set => totalVenta = value; }
+        public double TotalVenta { get => totalVenta; set => totalVenta = value; }
+        public String DocTotal { get => docTotal; set => docTotal = value; }
     }
 }
