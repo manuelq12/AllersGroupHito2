@@ -758,34 +758,13 @@ namespace FuerzaBruta
                 {
                     for (int k = j + 1; k < code.Length; k++)
                     {
-                        for (int l = k + 1; l < code.Length; l++)
-                        {
-                            for (int m = l + 1; m < code.Length; m++)
-                            {
-                                for (int n = m + 1; n < code.Length; n++)
-                                {
-                                    for (int o = n + 1; o < code.Length; o++)
-                                    {
-                                        List<int> combinacion = new List<int>();
-                                        combinacion.Add(code[i]);
-                                        combinacion.Add(code[j]);
-                                        combinacion.Add(code[k]);
-                                        combinacion.Add(code[l]);
-                                        combinacion.Add(code[m]);
-                                        combinacion.Add(code[n]);
-                                        combinacion.Add(code[o]);
-                                        resultado.Add(combinacion);
+                        List<int> combinacion = new List<int>();
 
-                                        
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
+                        combinacion.Add(code[i]);
+                        combinacion.Add(code[j]);
+                        combinacion.Add(code[k]);
+                        resultado.Add(combinacion);
+    
                     }
 
                 }
@@ -797,7 +776,28 @@ namespace FuerzaBruta
         }
 
         
+        public bool encontrarCombinacion(List<List<int>> combinaciones ,List<int> combinacionEncontrar)
+        {
+            bool encontrado = false;
+            List<int> combinacioAComparar = new List<int>();
+            for (int i=0; i<combinaciones.Count;i++)
+            {
 
+                combinacioAComparar = combinaciones[i];
+
+                for (int j=0; j<combinacioAComparar.Count;i++)
+                {
+                    if (combinacioAComparar[j] == combinacionEncontrar[j])
+                    {
+                        encontrado = true;
+                    }
+                }
+
+            }
+
+
+            return encontrado;
+        }
         
 
 
