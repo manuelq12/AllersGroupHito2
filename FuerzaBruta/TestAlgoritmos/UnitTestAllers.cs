@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FuerzaBruta;
+using System.Collections.Generic;
 
 namespace TestAlgoritmos
 {
@@ -17,14 +18,35 @@ namespace TestAlgoritmos
         public void TestCargarArticulos()
         {
             Escenario();
-            Assert.IsNotNull(controlador.Articulos);
+            try
+            {
+                controlador.CargarArticulos();
+                Assert.IsNotNull(controlador.Articulos);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+
+
         }
 
         [TestMethod]
         public void TestCargarClientes()
         {
             Escenario();
-            Assert.IsNotNull(controlador.Clientes);
+            try
+            {
+                controlador.CargarClientes();
+                Assert.IsNotNull(controlador.Clientes);
+                
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+
+
 
         }
 
@@ -32,16 +54,46 @@ namespace TestAlgoritmos
         public void TestCargarVentas()
         {
             Escenario();
-            Assert.IsNotNull(controlador.Ventas);
+
+            try
+            {
+                controlador.CargarVentas();
+                Assert.IsNotNull(controlador.Ventas);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
         }
 
 
         [TestMethod]
         public void TestCombinar()
         {
-            Escenario();
-            Assert.IsNotNull(controlador.Combinacion());
+           // Escenario();
+            int[] arreglo = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
+            List<List<int>> listResult = new List<List<int>>();
+            listResult = controlador.CombinacionP(arreglo);
+
+            //Combinaciones
+            List<int> combinacionExistente = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            List<int> combinacion = new List<int>();
+
+            for (int i= 0; i< listResult.Count; i++ ) //Recorrer lista de listas
+            {
+                combinacion = listResult[i];
+
+                for (int j=0; j<combinacion.Count;j++) // Recorrer elementos de una lista
+                {
+                    Assert.AreEqual(combinacion[j], combinacionExistente[j]);
+                }
+
+
+
+            }
+
+        
         }
 
     }

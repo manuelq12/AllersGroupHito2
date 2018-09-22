@@ -32,7 +32,10 @@ namespace FuerzaBruta
             clientes = new List<Cliente>();
             ventas = new List<Venta>();
             combinaciones = new List<List<Articulo>>();
-           cantRepeticionesPorGrupo(Combinacion());
+            //cantRepeticionesPorGrupo(Combinacion());          
+          
+          
+
         }
 
         public void CargarDatos()
@@ -699,23 +702,105 @@ namespace FuerzaBruta
 
             return code;
         }
-        public int[,] cantRepeticionesPorGrupo(List<List<int>> grupos)
+
+        //Método de Support
+        public void cantRepeticionesPorGrupo(List<List<int>> grupos)
         {
-
-            int[,] matriz = new int[grupos.Count(), 2];
-
             for (int i = 1; i <= grupos.Count(); i++)
             {
-
                 int a = repetecionEnVentas(grupos[i - 1]);
+                //Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
+            }
+   
+        }
 
 
-                Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
+        //Método de asociaciones
 
+
+        /*private static int Partition(int[] A, int p, int r)
+            Usar partition para realizar metodo de soporte!!!!!!
+        {
+            int x = A[r];
+            int temp;
+
+            int i = p;
+            for (int j = p; j < r; j++)
+            {
+                if (A[j] <= x)
+                {
+                    temp = A[j];
+                    A[j] = A[i];
+                    A[i] = temp;
+                    i++;
+                }
             }
 
+            A[r] = A[i];
+            A[i] = x;
+            return i;
+        }*/
 
-            return matriz;
+
+
+        //--------------------------------------------------------------------
+        //Método para UnitTest
+
+
+        public List<List<int>> CombinacionP(int [] arreglo )
+        {
+            List<List<int>> resultado = new List<List<int>>();
+            int[] code = arreglo; 
+
+            for (int i = 0; i < code.Length; i++)
+            {
+                for (int j = i + 1; j < code.Length; j++)
+                {
+                    for (int k = j + 1; k < code.Length; k++)
+                    {
+                        for (int l = k + 1; l < code.Length; l++)
+                        {
+                            for (int m = l + 1; m < code.Length; m++)
+                            {
+                                for (int n = m + 1; n < code.Length; n++)
+                                {
+                                    for (int o = n + 1; o < code.Length; o++)
+                                    {
+                                        List<int> combinacion = new List<int>();
+                                        combinacion.Add(code[i]);
+                                        combinacion.Add(code[j]);
+                                        combinacion.Add(code[k]);
+                                        combinacion.Add(code[l]);
+                                        combinacion.Add(code[m]);
+                                        combinacion.Add(code[n]);
+                                        combinacion.Add(code[o]);
+                                        resultado.Add(combinacion);
+
+                                        
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            
+
+            return resultado;
         }
+
+        
+
+        
+
+
+
     }
 }
