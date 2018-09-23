@@ -103,9 +103,9 @@ namespace TestAlgoritmos
 
             Escenario();
             List<Articulo> combinacion = new List<Articulo>();
-            Articulo producto1 = new Articulo(524, "TIJERA IRIS RECTA 11 cm" , 1);
-            Articulo producto2 = new Articulo(514, "TIJERA LITAUER PUNTOS 14 cm", 2);
-            Articulo producto3 = new Articulo(524, "PINZA MOSQUITO CURVA 12.5 cm", 7);
+            Articulo producto1 = new Articulo(524, "TIJERA IRIS RECTA 11 cm" , "1");
+            Articulo producto2 = new Articulo(514, "TIJERA LITAUER PUNTOS 14 cm", "2");
+            Articulo producto3 = new Articulo(524, "PINZA MOSQUITO CURVA 12.5 cm", "7");
 
             combinacion.Add(producto1);
             combinacion.Add(producto2);

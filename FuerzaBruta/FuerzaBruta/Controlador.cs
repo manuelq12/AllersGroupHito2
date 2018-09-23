@@ -34,11 +34,7 @@ namespace FuerzaBruta
             combinaciones = new List<List<Articulo>>();
             //cantRepeticionesPorGrupo(Combinacion());          
 
-            CargarDatos();
 
-            Console.WriteLine(articulos.Count);
-            Console.WriteLine(clientes.Count);
-            Console.WriteLine(ventas.Count);
 
         }
 
