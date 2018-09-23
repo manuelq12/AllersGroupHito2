@@ -17,9 +17,7 @@ namespace FuerzaBruta
             controlador.CargarDatos();
             List<List<int>> numeros = controlador.Combinacion();
             numeros.ForEach(i => controlador.ImprimirCombinaciones(i));
-
-
-            Console.WriteLine("Cantidad Lista 1: "+controlador.repetecionEnVentas(numeros[0]));
+            Console.Write("Cantidad Lista 1:" + controlador.repetecionEnVentas(numeros[0]));
 
             Console.ReadLine();
 
