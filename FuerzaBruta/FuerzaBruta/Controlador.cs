@@ -195,19 +195,37 @@ namespace FuerzaBruta
             }
             return resultado;
         }
-        public int repetecionEnVentas(List<int> combinacion)
+        public void RepeticionEnVentas(List<int> combinaciones)
         {
-            int num = 0;
-            for (int i = 0; i < darCardCodes().Count; i++)
+            int tamanho = combinaciones.Count();
+            int count = 0;
+            int count2 = 0;
+            String mensaje = "";
+            for(int i = 0; i < tamanho; i++)
             {
-                List<int> list = agruparPorFactura(darCardCodes()[i]);
-                if(list.Count() == combinacion.Count() && list.All(x => combinacion.Contains(x))){
-                    num++;
+                mensaje += combinaciones.ElementAt(i) + " ";
+            }
+            var x = ventas.GroupBy(n => n.CardCode);
+            foreach (var m in x)
+            {
+                if(m.Count() >= 7)
+                {
+                    count2 = 0;
+                   foreach(var s in m)
+                    {
+                        if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
+                        {
+                            count2++;
+                        }
+                    }
+                   if(count2 == 7)
+                    {
+                        count++;
+                    }
+
                 }
             }
-
-
-            return num;
+            Console.WriteLine(mensaje + "\n" + count);
 
         }
         public List<string> darCardCodes(){
@@ -724,16 +742,16 @@ namespace FuerzaBruta
         }
 
         //Método de Support
-        public void cantRepeticionesPorGrupo(List<List<int>> grupos)
-        {
-            for (int i = 1; i <= grupos.Count(); i++)
-            {
-                int a = repetecionEnVentas(grupos[i - 1]);
+        //public void cantRepeticionesPorGrupo(List<List<int>> grupos)
+        //{
+        //    for (int i = 1; i <= grupos.Count(); i++)
+        //    {
+        //        int a = repetecionEnVentas(grupos[i - 1]);
 
-                Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
-            }
+        //        Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
+        //    }
    
-        }
+        //}
 
 
         //Método de asociaciones
