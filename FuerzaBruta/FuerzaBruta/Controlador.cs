@@ -197,56 +197,33 @@ namespace FuerzaBruta
         }
         public int repetecionEnVentas(List<int> combinacion)
         {
-            List<int> todos = new List<int>();
-            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
-            var resul = combinacion.Where(a => todos.Contains(a)).Count();
-            return resul;
-
-        }
-
-        public int repeticionesEnVentas2222(List<int> combinacion)
-        {
-            int repeticion = 0;
-
-            //Crear grupos de las ventas
-            List<int> combinacionPorCompra = new List<int>();
-
-            for (int i=0; i<ventas.Count;i++)
+            int num = 0;
+            for (int i = 0; i < ventas.Count; i++)
             {
-                combinacionPorCompra.Add((int)Convert.ToDouble(ventas[i].ItemCode));
-                if(i+1 < ventas.Count)
-                {
-                    if (ventas[i].ItemCode == ventas[i+1].ItemCode)
-                    {
-                    combinacionPorCompra.Add((int)Convert.ToDouble(ventas[i].ItemCode));
-                    }
-
+                List<int> list = agruparPorFactura(ventas[i].CardCode);
+                if(list.Count() == combinacion.Count() && list.All(x => combinacion.Contains(x))){
+                    num++;
                 }
-                
             }
 
-            //Comparar con la combinación 
+            return num;
 
-            for (int j =0; j<combinacion.Count;j++)
-            {
-                int aux = 0;
-
-                if (combinacion[j] == combinacionPorCompra[j])
-                {
-                    aux++;
-                }
-                if(aux == combinacion.Count)
-                {
-                    repeticion++;
-                }
-
-            }
-
-
-            return repeticion;
         }
+        public List<int> agruparPorFactura(string fact){
+            List<int> a = new List<int>();
+            List<string> resul = new List<string>();
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                if (ventas[i].CardCode.Equals(fact)){
+                    resul.Add(ventas[i].ItemCode);
+                }
+            }
+           
+         
 
-      
+            resul.ForEach(i => a.Add((int)Convert.ToDouble(i)));
+            return a;
+        }
 
         //Método supremamente extenso.
         public int[] MasFrecuentes()
@@ -741,8 +718,8 @@ namespace FuerzaBruta
             for (int i = 1; i <= grupos.Count(); i++)
             {
                 int a = repetecionEnVentas(grupos[i - 1]);
-                //
-                //Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
+
+                Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
             }
    
         }
