@@ -206,6 +206,7 @@ namespace FuerzaBruta
                 }
             }
 
+
             return num;
 
         }
