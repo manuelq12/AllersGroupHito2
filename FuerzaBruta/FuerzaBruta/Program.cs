@@ -13,8 +13,10 @@ namespace FuerzaBruta
         {
             //listo
             Controlador controlador = new Controlador();
+            controlador.CargarDatos();
             List<List<int>> numeros = controlador.Combinacion();
             numeros.ForEach(i => controlador.ImprimirCombinaciones(i));
+
             Console.WriteLine(numeros[0][0]);
             Console.ReadLine();
         }
