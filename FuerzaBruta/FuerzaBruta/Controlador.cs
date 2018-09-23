@@ -709,6 +709,7 @@ namespace FuerzaBruta
             for (int i = 1; i <= grupos.Count(); i++)
             {
                 int a = repetecionEnVentas(grupos[i - 1]);
+                //
                 //Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
             }
    
