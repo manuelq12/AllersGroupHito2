@@ -33,7 +33,7 @@ namespace FuerzaBruta
             ventas = new List<Venta>();
             combinaciones = new List<List<Articulo>>();
             //cantRepeticionesPorGrupo(Combinacion());          
-
+            CargarDatos();
 
 
         }

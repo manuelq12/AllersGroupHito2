@@ -15,7 +15,7 @@ namespace FuerzaBruta
             Controlador controlador = new Controlador();
             List<List<int>> numeros = controlador.Combinacion();
             numeros.ForEach(i => controlador.ImprimirCombinaciones(i));
-            Console.WriteLine(numeros.Count());
+            Console.WriteLine(numeros[0][0]);
             Console.ReadLine();
         }
     }
