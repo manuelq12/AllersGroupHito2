@@ -201,6 +201,7 @@ namespace FuerzaBruta
             ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
             var resul = combinacion.Where(a => todos.Contains(a)).Count();
             return resul;
+
         }
       
 

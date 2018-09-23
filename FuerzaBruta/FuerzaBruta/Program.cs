@@ -22,6 +22,7 @@ namespace FuerzaBruta
             Console.WriteLine("Cantidad Lista 1: "+controlador.repetecionEnVentas(numeros[0]));
 
             Console.ReadLine();
+
         }
 
     }
