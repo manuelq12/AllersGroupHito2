@@ -198,9 +198,9 @@ namespace FuerzaBruta
         public int repetecionEnVentas(List<int> combinacion)
         {
             int num = 0;
-            for (int i = 0; i < ventas.Count; i++)
+            for (int i = 0; i < darCardCodes().Count; i++)
             {
-                List<int> list = agruparPorFactura(ventas[i].CardCode);
+                List<int> list = agruparPorFactura(darCardCodes()[i]);
                 if(list.Count() == combinacion.Count() && list.All(x => combinacion.Contains(x))){
                     num++;
                 }
@@ -209,19 +209,29 @@ namespace FuerzaBruta
             return num;
 
         }
+        public List<string> darCardCodes(){
+            List<string> resul = new List<string>();
+
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                if(!resul.Contains(ventas[i].CardCode)){
+                    resul.Add(ventas[i].CardCode);
+                }
+            }
+
+            return resul;
+        }
+
         public List<int> agruparPorFactura(string fact){
             List<int> a = new List<int>();
-            List<string> resul = new List<string>();
+           
             for (int i = 0; i < ventas.Count; i++)
             {
                 if (ventas[i].CardCode.Equals(fact)){
-                    resul.Add(ventas[i].ItemCode);
+                    a.Add(Convert.ToInt32(ventas[i].ItemCode));
                 }
             }
-           
-         
-
-            resul.ForEach(i => a.Add((int)Convert.ToDouble(i)));
+        
             return a;
         }
 
