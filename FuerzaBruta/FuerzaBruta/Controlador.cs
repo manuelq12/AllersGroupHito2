@@ -33,8 +33,12 @@ namespace FuerzaBruta
             ventas = new List<Venta>();
             combinaciones = new List<List<Articulo>>();
             //cantRepeticionesPorGrupo(Combinacion());          
-          
-          
+
+            CargarDatos();
+
+            Console.WriteLine(articulos.Count);
+            Console.WriteLine(clientes.Count);
+            Console.WriteLine(ventas.Count);
 
         }
 
@@ -60,7 +64,7 @@ namespace FuerzaBruta
                     {
                         int itemCode = Int16.Parse(todo[0]);
                         String itemName = todo[1];
-                        int itemClasification = Int16.Parse(todo[2]);
+                        String itemClasification = todo[2];
                         articulos.Add(new Articulo(itemCode, itemName, itemClasification));
                     }
 

@@ -10,9 +10,9 @@ namespace FuerzaBruta
     {
         private int itemCode;
         private String itemName;
-        private int itemClasification;
+        private String itemClasification;
 
-        public Articulo(int ItemCode, string ItemName, int ItemClasification)
+        public Articulo(int ItemCode, string ItemName, String ItemClasification)
         {
             itemCode = ItemCode;
             itemName = ItemName;
@@ -21,7 +21,7 @@ namespace FuerzaBruta
 
         public int ItemCode { get => itemCode; set => itemCode = value; }
         public string ItemName { get => itemName; set => itemName = value; }
-        public int ItemClasification { get => itemClasification; set => itemClasification = value; }
+        public String ItemClasification { get => itemClasification; set => itemClasification = value; }
         
     }
 }
