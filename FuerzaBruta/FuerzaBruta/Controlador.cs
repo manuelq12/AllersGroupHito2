@@ -203,6 +203,49 @@ namespace FuerzaBruta
             return resul;
 
         }
+
+        public int repeticionesEnVentas2222(List<int> combinacion)
+        {
+            int repeticion = 0;
+
+            //Crear grupos de las ventas
+            List<int> combinacionPorCompra = new List<int>();
+
+            for (int i=0; i<ventas.Count;i++)
+            {
+                combinacionPorCompra.Add((int)Convert.ToDouble(ventas[i].ItemCode));
+                if(i+1 < ventas.Count)
+                {
+                    if (ventas[i].ItemCode == ventas[i+1].ItemCode)
+                    {
+                    combinacionPorCompra.Add((int)Convert.ToDouble(ventas[i].ItemCode));
+                    }
+
+                }
+                
+            }
+
+            //Comparar con la combinación 
+
+            for (int j =0; j<combinacion.Count;j++)
+            {
+                int aux = 0;
+
+                if (combinacion[j] == combinacionPorCompra[j])
+                {
+                    aux++;
+                }
+                if(aux == combinacion.Count)
+                {
+                    repeticion++;
+                }
+
+            }
+
+
+            return repeticion;
+        }
+
       
 
         //Método supremamente extenso.

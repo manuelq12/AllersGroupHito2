@@ -19,7 +19,8 @@ namespace FuerzaBruta
             numeros.ForEach(i => controlador.ImprimirCombinaciones(i));
 
 
-            Console.WriteLine("Cantidad Lista 1: "+controlador.repetecionEnVentas(numeros[0]));
+            //Console.WriteLine("Cantidad Lista 1: "+controlador.repetecionEnVentas(numeros[0]));
+            Console.WriteLine("Cantidad Lisa 1: " + controlador.repeticionesEnVentas2222(numeros[5]));
 
             Console.ReadLine();
 
