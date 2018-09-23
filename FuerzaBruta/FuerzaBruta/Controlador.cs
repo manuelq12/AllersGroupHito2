@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -196,25 +197,12 @@ namespace FuerzaBruta
         }
         public int repetecionEnVentas(List<int> combinacion)
         {
-            int contador = 0;
-            int aux = 0;
-            for (int i = 0; i < ventas.Count(); i++)
-            {
-                if (ventas[i].ItemCode.Equals(combinacion[aux]+""))
-                {
-                    aux++;
-                    if (aux == combinacion.Count())
-                    {
-                        aux = 0;
-                        contador++;
-                    }
-                }
-                else aux = 0;
-
-            }
-            return contador;
+            List<int> todos = new List<int>();
+            ventas.ForEach(i => todos.Add((int)Convert.ToDouble(i.ItemCode)));
+            var resul = combinacion.Where(a => todos.Contains(a)).Count();
+            return resul;
         }
-
+      
 
         //Método supremamente extenso.
         public int[] MasFrecuentes()
