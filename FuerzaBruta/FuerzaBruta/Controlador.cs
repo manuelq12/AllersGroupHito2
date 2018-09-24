@@ -13,6 +13,12 @@ namespace FuerzaBruta
         public const String rutaArticulos = "../../Data/Articulos.csv";
         public const String rutaClientes = "../../Data/Clientes.csv";
         public const String rutaVentas = "../../Data/Ventas.csv";
+
+        public const String rutaArticulosPrueba = "../../DatosPrueba/Articulos.csv";
+        public const String rutaClientesPrueba = "../../DatosPrueba/Clientes.csv";
+        public const String rutaVentasPrueba = "../../DatosPrueba/Ventas.csv";
+
+
         private List<Articulo> articulos;
         private List<Cliente> clientes;
         private List<Venta> ventas;
@@ -43,7 +49,15 @@ namespace FuerzaBruta
         {
             CargarArticulos();
             CargarClientes();
-            CargarVentas();
+            CargarVentas(rutaVentas);
+
+        }
+
+        public void CargarDatosPrueba()
+        {
+            CargarArticulos();
+            CargarClientes();
+            CargarVentas(rutaVentasPrueba);
 
         }
 
@@ -100,7 +114,7 @@ namespace FuerzaBruta
                 throw new Exception("Error al cargar los Clientes");
             }
         }
-        public void CargarVentas()
+        public void CargarVentas(String ruta)
         {
             String line;
             string uno="";
@@ -109,7 +123,7 @@ namespace FuerzaBruta
             try
             {
 
-                StreamReader sr = new StreamReader(rutaVentas);
+                StreamReader sr = new StreamReader(ruta);
                 line = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -158,6 +172,7 @@ namespace FuerzaBruta
             List<List<int>> resultado = new List<List<int>>();
             int[] code = MasFrecuentes();
 
+
             for (int i = 0; i < code.Length; i++)
             {
                 for (int j = i + 1; j < code.Length; j++)
@@ -195,12 +210,39 @@ namespace FuerzaBruta
             }
             return resultado;
         }
-        public void RepeticionEnVentas(List<int> combinaciones)
+        public List<List<int>> CombinacionPrueba()
+        {
+            List<List<int>> resultado = new List<List<int>>();
+            int[] code = MasFrecuentes();
+
+            code.ToList().ForEach(e => Console.WriteLine(e));
+
+            for (int i = 0; i < 15; i++)
+            {
+                for (int j = i + 1; j < 15; j++)
+                {
+                    for (int k = j + 1; k < 15; k++)
+                    {
+                        for (int l = k + 1; l < 15; l++)
+                        {
+                            List<int> combinacion = new List<int>();
+                            combinacion.Add(code[i]);
+                            combinacion.Add(code[j]);
+                            combinacion.Add(code[k]);
+                            combinacion.Add(code[l]);
+                            resultado.Add(combinacion);
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }
+        public int RepeticionEnVentas(List<int> combinaciones)
         {
             int tamanho = combinaciones.Count();
             int count = 0;
             int count2 = 0;
-            String mensaje = "";
+            String mensaje = "En el grupo de combinaciones :";
             for(int i = 0; i < tamanho; i++)
             {
                 mensaje += combinaciones.ElementAt(i) + " ";
@@ -225,8 +267,8 @@ namespace FuerzaBruta
 
                 }
             }
-            Console.WriteLine(mensaje + "\n" + count);
-
+            Console.WriteLine(mensaje + "\n" + "Tiene un total de "+count+" Apariciones en las ventas");
+            return count;
         }
         public List<string> darCardCodes(){
             List<string> resul = new List<string>();
