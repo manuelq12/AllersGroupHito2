@@ -167,49 +167,6 @@ namespace FuerzaBruta
           
         }
 
-        public List<List<int>> Combinacion()
-        {
-            List<List<int>> resultado = new List<List<int>>();
-            int[] code = MasFrecuentes();
-
-
-            for (int i = 0; i < code.Length; i++)
-            {
-                for (int j = i + 1; j < code.Length; j++)
-                {
-                    for (int k = j + 1; k < code.Length; k++)
-                    {
-                        for (int l = k + 1; l < code.Length; l++)
-                        {
-                            for (int m = l + 1; m < code.Length; m++)
-                            {
-                                for (int n = m + 1; n < code.Length; n++)
-                                {
-                                    for (int o = n + 1; o < code.Length; o++)
-                                    {
-                                        List<int> combinacion = new List<int>();
-                                        combinacion.Add(code[i]);
-                                        combinacion.Add(code[j]);
-                                        combinacion.Add(code[k]);
-                                        combinacion.Add(code[l]);
-                                        combinacion.Add(code[m]);
-                                        combinacion.Add(code[n]);
-                                        combinacion.Add(code[o]);
-                                        resultado.Add(combinacion);
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-            return resultado;
-        }
         public List<List<int>> CombinacionPrueba()
         {
             List<List<int>> resultado = new List<List<int>>();
@@ -297,6 +254,153 @@ namespace FuerzaBruta
         }
 
         //Método supremamente extenso.
+        public List<List<int>> CombinacionHasta7(int tamanhoGrupo, int[] code)
+        {
+            List<List<int>> resultado = new List<List<int>>();
+            if (tamanhoGrupo <= 0 || code.Length < tamanhoGrupo)
+            {
+                Console.WriteLine("No se puede realizar esta operación");
+            }
+            else
+            {
+                bool c2 = false;
+                bool c3 = false;
+                bool c4 = false;
+                bool c5 = false;
+                bool c6 = false;
+                bool c7 = false;
+                if (tamanhoGrupo == 2)
+                {
+                    c2 = true;
+                }
+                else if (tamanhoGrupo == 3)
+                {
+                    c2 = true;
+                    c3 = true;
+                }
+                else if (tamanhoGrupo == 4)
+                {
+                    c2 = true;
+                    c3 = true;
+                    c4 = true;
+                }
+                else if (tamanhoGrupo == 5)
+                {
+                    c2 = true;
+                    c3 = true;
+                    c4 = true;
+                    c5 = true;
+                }
+                else if (tamanhoGrupo == 6)
+                {
+                    c2 = true;
+                    c3 = true;
+                    c4 = true;
+                    c5 = true;
+                    c6 = true;
+                }
+                else if (tamanhoGrupo == 7)
+                {
+                    c2 = true;
+                    c3 = true;
+                    c4 = true;
+                    c5 = true;
+                    c6 = true;
+                    c7 = true;
+
+                }
+                for (int i = 0; i < code.Length; i++)
+                {
+                    if (c2 == false)
+                    {
+                        List<int> combinacion = new List<int>();
+                        combinacion.Add(code[i]);
+                        resultado.Add(combinacion);
+                    }
+                    for (int j = i + 1; j < code.Length && c2; j++)
+                    {
+                        if (c3 == false)
+                        {
+                            List<int> combinacion = new List<int>();
+                            combinacion.Add(code[i]);
+                            combinacion.Add(code[j]);
+                            resultado.Add(combinacion);
+                        }
+                        for (int k = j + 1; k < code.Length && c3; k++)
+                        {
+                            if (c4 == false)
+                            {
+                                List<int> combinacion = new List<int>();
+                                combinacion.Add(code[i]);
+                                combinacion.Add(code[j]);
+                                combinacion.Add(code[k]);
+                                resultado.Add(combinacion);
+                            }
+                            for (int l = k + 1; l < code.Length && c4; l++)
+                            {
+                                if (c5 == false)
+                                {
+                                    List<int> combinacion = new List<int>();
+                                    combinacion.Add(code[i]);
+                                    combinacion.Add(code[j]);
+                                    combinacion.Add(code[k]);
+                                    combinacion.Add(code[l]);
+                                    resultado.Add(combinacion);
+                                }
+                                for (int m = l + 1; m < code.Length && c5; m++)
+                                {
+                                    if (c6 == false)
+                                    {
+                                        List<int> combinacion = new List<int>();
+                                        combinacion.Add(code[i]);
+                                        combinacion.Add(code[j]);
+                                        combinacion.Add(code[k]);
+                                        combinacion.Add(code[l]);
+                                        combinacion.Add(code[m]);
+                                        resultado.Add(combinacion);
+                                    }
+                                    for (int n = m + 1; n < code.Length && c6; n++)
+                                    {
+                                        if (c7 == false)
+                                        {
+                                            List<int> combinacion = new List<int>();
+                                            combinacion.Add(code[i]);
+                                            combinacion.Add(code[j]);
+                                            combinacion.Add(code[k]);
+                                            combinacion.Add(code[l]);
+                                            combinacion.Add(code[m]);
+                                            combinacion.Add(code[n]);
+                                            resultado.Add(combinacion);
+                                        }
+                                        for (int o = n + 1; o < code.Length && c7; o++)
+                                        {
+                                            List<int> combinacion = new List<int>();
+                                            combinacion.Add(code[i]);
+                                            combinacion.Add(code[j]);
+                                            combinacion.Add(code[k]);
+                                            combinacion.Add(code[l]);
+                                            combinacion.Add(code[m]);
+                                            combinacion.Add(code[n]);
+                                            combinacion.Add(code[o]);
+                                            resultado.Add(combinacion);
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+
+            return resultado;
+        }
+
         public int[] MasFrecuentes()
         {
             List<int> todos = new List<int>();
