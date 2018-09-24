@@ -18,18 +18,15 @@ namespace FuerzaBruta
             List<List<int>> numeros = controlador.CombinacionPrueba();
             int count = numeros.Count();
 
-            List<int> b= new List<int>();
+            List<int> b= controlador.RepeticionEnVentas(numeros);
+
+            foreach (var e in b)
+            {
+                Console.WriteLine(e);
+            }
             int mayor=0;
 
-            foreach (var a in numeros)
-            {
-                int contador = controlador.RepeticionEnVentas(a);
-                if (contador>mayor)
-                {
-                b = a;
-                mayor=contador; 
-                }
-            }
+
 
             String mensaje = "";
 

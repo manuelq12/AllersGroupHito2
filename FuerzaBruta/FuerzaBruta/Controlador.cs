@@ -237,16 +237,15 @@ namespace FuerzaBruta
             }
             return resultado;
         }
-        public int RepeticionEnVentas(List<int> combinaciones)
+        public List<int> RepeticionEnVentas(List<List<int>> todo)
         {
+            List<int> resultados= new List<int>();
+            foreach (var combinaciones in todo)
+            {
+
             int tamanho = combinaciones.Count();
             int count = 0;
             int count2 = 0;
-            String mensaje = "En el grupo de combinaciones :";
-            for(int i = 0; i < tamanho; i++)
-            {
-                mensaje += combinaciones.ElementAt(i) + " ";
-            }
             var x = ventas.GroupBy(n => n.CardCode);
             foreach (var m in x)
             {
@@ -260,15 +259,16 @@ namespace FuerzaBruta
                             count2++;
                         }
                     }
-                   if(count2 == 7)
+                   if(count2 == combinaciones.Count)
                     {
                         count++;
                     }
 
                 }
             }
-            Console.WriteLine(mensaje + "\n" + "Tiene un total de "+count+" Apariciones en las ventas");
-            return count;
+                resultados.Add(count);
+            }
+            return resultados;
         }
         public List<string> darCardCodes(){
             List<string> resul = new List<string>();
