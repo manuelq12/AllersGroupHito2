@@ -18,8 +18,12 @@ namespace FuerzaBruta
             List<List<int>> numeros = controlador.Combinacion();
             int count = numeros.Count();
 
-                numeros.ForEach(n => controlador.RepeticionEnVentas(n));
-            
+            numeros.ForEach(n => controlador.RepeticionEnVentas(n));
+
+            //List<int> combinacion = new List<int>();
+            //combinacion = numeros[0];
+            //int cant = controlador.RepeticionEnVentasP(combinacion);
+            //Console.WriteLine("Cantidad : {0}", cant);
 
             Console.ReadLine();
 

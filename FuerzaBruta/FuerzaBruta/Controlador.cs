@@ -750,7 +750,7 @@ namespace FuerzaBruta
 
         //        Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
         //    }
-   
+
         //}
 
 
@@ -784,6 +784,43 @@ namespace FuerzaBruta
 
         //--------------------------------------------------------------------
         //Método para UnitTest
+
+
+        public int RepeticionEnVentasP(List<int> combinaciones)
+        {
+            int tamanho = combinaciones.Count();
+            int count = 0;
+            int count2 = 0;
+            String mensaje = "";
+            for (int i = 0; i < tamanho; i++)
+            {
+                mensaje += combinaciones.ElementAt(i) + " ";
+            }
+            var x = ventas.GroupBy(n => n.CardCode);
+            foreach (var m in x)
+            {
+                if (m.Count() >=7)
+                {
+                    count2 = 0;
+                    foreach (var s in m)
+                    {
+                        if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
+                        {
+                            count2++;
+                        }
+                    }
+                    if (count2 == 7)
+                    {
+                        count++;
+                        
+                    }
+
+                }
+            }
+            Console.WriteLine(mensaje + "\n" + count);
+            return count;
+        }
+
 
 
         public List<List<int>> CombinacionP(int [] arreglo )
