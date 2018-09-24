@@ -167,10 +167,98 @@ namespace FuerzaBruta
             return mensaje;
         }
 
+        public List<List<int>> CombinacionPrueba()
+        {
+            List<List<int>> resultado = new List<List<int>>();
+            int[] code = MasFrecuentes();
+
+            code.ToList().ForEach(e => Console.WriteLine(e));
+
+            for (int i = 0; i < 15; i++)
+            {
+                for (int j = i + 1; j < 15; j++)
+                {
+                    for (int k = j + 1; k < 15; k++)
+                    {
+                        for (int l = k + 1; l < 15; l++)
+                        {
+                            List<int> combinacion = new List<int>();
+                            combinacion.Add(code[i]);
+                            combinacion.Add(code[j]);
+                            combinacion.Add(code[k]);
+                            combinacion.Add(code[l]);
+                            resultado.Add(combinacion);
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }
+        public int RepeticionEnVentas(List<int> combinaciones)
+        {
+            int tamanho = combinaciones.Count();
+            int count = 0;
+            int count2 = 0;
+            int temp = combinaciones.Count();
+            String mensaje = "En el grupo de combinaciones :";
+            for(int i = 0; i < tamanho; i++)
+            {
+                mensaje += combinaciones.ElementAt(i) + " ";
+            }
+            var x = ventas.GroupBy(n => n.CardCode);
+            foreach (var m in x)
+            {
+                if(m.Count() >= 7)
+                {
+                    count2 = 0;
+                   foreach(var s in m)
+                    {
+                        if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
+                        {
+                            count2++;
+                        }
+                    }
+                   if(count2 == temp)
+                    {
+                        count++;
+                    }
+
+                }
+            }
+            Console.WriteLine(mensaje + "\n" + "Tiene un total de "+count+" Apariciones en las ventas");
+            return count;
+        }
+        public List<string> darCardCodes(){
+            List<string> resul = new List<string>();
+
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                if(!resul.Contains(ventas[i].CardCode)){
+                    resul.Add(ventas[i].CardCode);
+                }
+            }
+
+            return resul;
+        }
+
+        public List<int> agruparPorFactura(string fact){
+            List<int> a = new List<int>();
+           
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                if (ventas[i].CardCode.Equals(fact)){
+                    a.Add(Convert.ToInt32(ventas[i].ItemCode));
+                }
+            }
+        
+            return a;
+        }
+
+        //Método supremamente extenso.
         public List<List<int>> CombinacionHasta7(int tamanhoGrupo, int[] code)
         {
             List<List<int>> resultado = new List<List<int>>();
-            if(tamanhoGrupo <= 0 || code.Length < tamanhoGrupo)
+            if (tamanhoGrupo <= 0 || code.Length < tamanhoGrupo)
             {
                 Console.WriteLine("No se puede realizar esta operación");
             }
@@ -224,10 +312,10 @@ namespace FuerzaBruta
                 }
                 for (int i = 0; i < code.Length; i++)
                 {
-                    if(c2 == false)
+                    if (c2 == false)
                     {
-                          List<int> combinacion = new List<int>();
-                          combinacion.Add(code[i]);
+                        List<int> combinacion = new List<int>();
+                        combinacion.Add(code[i]);
                         resultado.Add(combinacion);
                     }
                     for (int j = i + 1; j < code.Length && c2; j++)
@@ -310,96 +398,9 @@ namespace FuerzaBruta
                 }
 
             }
-           
+
             return resultado;
         }
-        public List<List<int>> CombinacionPrueba()
-        {
-            List<List<int>> resultado = new List<List<int>>();
-            int[] code = MasFrecuentes();
-
-            code.ToList().ForEach(e => Console.WriteLine(e));
-
-            for (int i = 0; i < 15; i++)
-            {
-                for (int j = i + 1; j < 15; j++)
-                {
-                    for (int k = j + 1; k < 15; k++)
-                    {
-                        for (int l = k + 1; l < 15; l++)
-                        {
-                            List<int> combinacion = new List<int>();
-                            combinacion.Add(code[i]);
-                            combinacion.Add(code[j]);
-                            combinacion.Add(code[k]);
-                            combinacion.Add(code[l]);
-                            resultado.Add(combinacion);
-                        }
-                    }
-                }
-            }
-            return resultado;
-        }
-        public int RepeticionEnVentas(List<int> combinaciones)
-        {
-            int tamanho = combinaciones.Count();
-            int count = 0;
-            int count2 = 0;
-            String mensaje = "En el grupo de combinaciones :";
-            for(int i = 0; i < tamanho; i++)
-            {
-                mensaje += combinaciones.ElementAt(i) + " ";
-            }
-            var x = ventas.GroupBy(n => n.CardCode);
-            foreach (var m in x)
-            {
-                if(m.Count() >= 7)
-                {
-                    count2 = 0;
-                   foreach(var s in m)
-                    {
-                        if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
-                        {
-                            count2++;
-                        }
-                    }
-                   if(count2 == 7)
-                    {
-                        count++;
-                    }
-
-                }
-            }
-            Console.WriteLine(mensaje + "\n" + "Tiene un total de "+count+" Apariciones en las ventas");
-            return count;
-        }
-        public List<string> darCardCodes(){
-            List<string> resul = new List<string>();
-
-            for (int i = 0; i < ventas.Count; i++)
-            {
-                if(!resul.Contains(ventas[i].CardCode)){
-                    resul.Add(ventas[i].CardCode);
-                }
-            }
-
-            return resul;
-        }
-
-        public List<int> agruparPorFactura(string fact){
-            List<int> a = new List<int>();
-           
-            for (int i = 0; i < ventas.Count; i++)
-            {
-                if (ventas[i].CardCode.Equals(fact)){
-                    a.Add(Convert.ToInt32(ventas[i].ItemCode));
-                }
-            }
-        
-            return a;
-        }
-
-        //Método supremamente extenso.
         public int[] MasFrecuentes()
         {
             List<int> todos = new List<int>();
