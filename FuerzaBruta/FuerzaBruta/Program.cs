@@ -17,8 +17,9 @@ namespace FuerzaBruta
             controlador.CargarDatos();
             List<List<int>> numeros = controlador.Combinacion();
             int count = numeros.Count();
-
-                numeros.ForEach(n => controlador.RepeticionEnVentas(n));
+            Console.WriteLine(count);
+            count = 1;
+             numeros.ForEach(n => controlador.RepeticionEnVentas(n, l: count++));
             
 
             Console.ReadLine();

@@ -195,12 +195,12 @@ namespace FuerzaBruta
             }
             return resultado;
         }
-        public void RepeticionEnVentas(List<int> combinaciones)
+        public void RepeticionEnVentas(List<int> combinaciones, int l)
         {
             int tamanho = combinaciones.Count();
             int count = 0;
             int count2 = 0;
-            String mensaje = "";
+            String mensaje = "\n Combinación: " + l + " \n";
             for(int i = 0; i < tamanho; i++)
             {
                 mensaje += combinaciones.ElementAt(i) + " ";
