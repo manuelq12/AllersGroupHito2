@@ -96,30 +96,19 @@ namespace TestAlgoritmos
         }
 
         [TestMethod]
-        public void TestCantCombinaciones()
+        public void TestRepeticionEnVentas()
         {
-            //Crear un list con dos products
-            //Dice cuantas veces esta esa asociación 
-
+            
             Escenario();
-            List<Articulo> combinacion = new List<Articulo>();
-            Articulo producto1 = new Articulo(524, "TIJERA IRIS RECTA 11 cm" , "1");
-            Articulo producto2 = new Articulo(514, "TIJERA LITAUER PUNTOS 14 cm", "2");
-            Articulo producto3 = new Articulo(524, "PINZA MOSQUITO CURVA 12.5 cm", "7");
+            controlador.CargarDatos();
 
-            combinacion.Add(producto1);
-            combinacion.Add(producto2);
-            combinacion.Add(producto3);
-
-
-            //Crear 3 productos con ItemSet 524 514 552
-
-
-
-           // int cantRepeticiones = 0;
-           // cantRepeticiones = controlador.repetecionEnVentas(combinacion);
-           // Assert.AreEqual(cantRepeticiones, 1);     
-
+            List<List<int>> numeros = controlador.Combinacion();
+            List<int> combinacion = new List<int>();
+            combinacion = numeros[0];
+            
+            int cantRepeticiones = 0;
+            cantRepeticiones = controlador.RepeticionEnVentasP(combinacion);
+            Assert.AreEqual(cantRepeticiones, 33);
 
         }
 
