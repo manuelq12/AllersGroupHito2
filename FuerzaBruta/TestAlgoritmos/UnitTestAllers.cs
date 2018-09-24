@@ -100,13 +100,15 @@ namespace TestAlgoritmos
         {
             
             Escenario();
-            List<int> combinaciones = new List<int>();
+            controlador.CargarDatos();
+
+            List<List<int>> numeros = controlador.Combinacion();
+            List<int> combinacion = new List<int>();
+            combinacion = numeros[0];
             
-
-
-
-            controlador.RepeticionEnVentas(combinaciones);
-           
+            int cantRepeticiones = 0;
+            cantRepeticiones = controlador.RepeticionEnVentasP(combinacion);
+            Assert.AreEqual(cantRepeticiones, 33);
 
         }
 
