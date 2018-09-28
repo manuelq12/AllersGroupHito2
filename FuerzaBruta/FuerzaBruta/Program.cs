@@ -9,33 +9,31 @@ namespace FuerzaBruta
 {
    public class Program
     {
-      
+
         static void Main(string[] args)
         {
             //listo
             Controlador controlador = new Controlador();
             controlador.CargarDatosPrueba();
-            List<List<int>> numeros = controlador.CombinacionPrueba();
-            int count = numeros.Count();
+            int[] itemCode = { 1, 2, 3, 4, 5, 6 };
+            List<List<int>> numeros = controlador.CombinacionHasta7(2,itemCode);
+            int count = controlador.Ventas.GroupBy(n=> n.CardCode).Count();
 
-            List<int> b= controlador.RepeticionEnVentas(numeros);
+            List<int> b = controlador.RepeticionEnVentas(numeros);
+            List<double> porcentajes = controlador.Support(b);
 
-            foreach (var e in b)
-            {
-                Console.WriteLine(e);
-            }
-            int mayor=0;
+            Console.WriteLine("Combinaciones \n");
+            numeros.ForEach(x => controlador.ImprimirCombinaciones(x));
 
+            Console.WriteLine("Repeticiones \n");
+            controlador.ImprimirCombinaciones(b);
 
+            Console.WriteLine("Tamaño \n");
+            Console.WriteLine( count +  " \n");
 
-            String mensaje = "";
+            Console.WriteLine("Porcentajes \n");
+            controlador.ImprimirPorcentajes(porcentajes);
 
-            for (int i = 0; i < b.Count; i++)
-            {
-                mensaje += b[i]+ " ";
-            }
-            Console.WriteLine("La combinacion "+ mensaje +"Con las siguientes repeticiones "+mayor);
-            Console.ReadLine();
 
         }
 

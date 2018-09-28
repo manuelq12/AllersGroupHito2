@@ -164,7 +164,17 @@ namespace FuerzaBruta
             {
                 mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n";
             }
-          
+            Console.WriteLine(mensaje);
+        }
+        public void ImprimirPorcentajes(List<double> n)
+        {
+            String mensaje = "";
+            int tamanho = n.Count();
+            for (int i = 0; i < tamanho; i++)
+            {
+                mensaje += (i + 1) + ". " + n.ElementAt(i) + "\n";
+            }
+            Console.WriteLine(mensaje);
         }
 
         public List<List<int>> CombinacionPrueba()
@@ -194,64 +204,57 @@ namespace FuerzaBruta
             }
             return resultado;
         }
+
         public List<int> RepeticionEnVentas(List<List<int>> todo)
         {
-            List<int> resultados= new List<int>();
+            List<int> resultados = new List<int>();
             foreach (var combinaciones in todo)
             {
 
-            int tamanho = combinaciones.Count();
-            int count = 0;
-            int count2 = 0;
-            var x = ventas.GroupBy(n => n.CardCode);
-            foreach (var m in x)
-            {
-                if(m.Count() >= 7)
+                int tamanho = combinaciones.Count();
+                int count = 0;
+                int count2 = 0;
+                var x = ventas.GroupBy(n => n.CardCode);
+                foreach (var m in x)
                 {
-                    count2 = 0;
-                   foreach(var s in m)
+                    if (m.Count() >= tamanho)
                     {
-                        if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
+                        count2 = 0;
+                        foreach (var s in m)
                         {
-                            count2++;
+                            if (combinaciones.Contains(Convert.ToInt32(s.ItemCode)))
+                            {
+                                count2++;
+                            }
                         }
-                    }
-                   if(count2 == combinaciones.Count)
-                    {
-                        count++;
-                    }
+                        if (count2 == tamanho)
+                        {
+                            count++;
+                        }
 
+                    }
                 }
-            }
                 resultados.Add(count);
             }
             return resultados;
         }
-        public List<string> darCardCodes(){
-            List<string> resul = new List<string>();
-
-            for (int i = 0; i < ventas.Count; i++)
-            {
-                if(!resul.Contains(ventas[i].CardCode)){
-                    resul.Add(ventas[i].CardCode);
-                }
-            }
-
-            return resul;
+        public List<double> Support(List<int> repeticiones)
+        {
+            List<double> porcentajes = new List<double>();
+            int tamanho = ventas.GroupBy(n => n.CardCode).Count();
+            repeticiones.ForEach(n => porcentajes.Add((Double)n / tamanho));
+            return porcentajes;
         }
-
-        public List<int> agruparPorFactura(string fact){
-            List<int> a = new List<int>();
+        public List<double> Confianza(List<int> repeticionesConjuntoPequenho, List<int> repeticionesConjuntoGrande)
+        {
+            List<double> porcentajes = new List<double>();
+            int tamanho1 = repeticionesConjuntoPequenho.Count();
+            int tamanho2 = repeticionesConjuntoGrande.Count();
            
-            for (int i = 0; i < ventas.Count; i++)
-            {
-                if (ventas[i].CardCode.Equals(fact)){
-                    a.Add(Convert.ToInt32(ventas[i].ItemCode));
-                }
-            }
-        
-            return a;
+           
+            return porcentajes;
         }
+
 
         //Método supremamente extenso.
         public List<List<int>> CombinacionHasta7(int tamanhoGrupo, int[] code)
@@ -887,44 +890,7 @@ namespace FuerzaBruta
             return code;
         }
 
-        //Método de Support
-        //public void cantRepeticionesPorGrupo(List<List<int>> grupos)
-        //{
-        //    for (int i = 1; i <= grupos.Count(); i++)
-        //    {
-        //        int a = repetecionEnVentas(grupos[i - 1]);
-
-        //        Console.WriteLine("Grupos {0}, Repeticiones {1}", i, a);
-        //    }
-
-        //}
-
-
-        //Método de asociaciones
-
-
-        /*private static int Partition(int[] A, int p, int r)
-            Usar partition para realizar metodo de soporte!!!!!!
-        {
-            int x = A[r];
-            int temp;
-
-            int i = p;
-            for (int j = p; j < r; j++)
-            {
-                if (A[j] <= x)
-                {
-                    temp = A[j];
-                    A[j] = A[i];
-                    A[i] = temp;
-                    i++;
-                }
-            }
-
-            A[r] = A[i];
-            A[i] = x;
-            return i;
-        }*/
+       
 
 
 
