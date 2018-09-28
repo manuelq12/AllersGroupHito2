@@ -193,21 +193,25 @@ namespace FuerzaBruta
         public void generarAsociaciones()
         {
             //int numArticulos = getNumArticulos();
-            int numArticulos = 5;
+            int numArticulos = 6;
             //List<int> darItemCode = new List<int>();
             //articulos.ForEach(a=> darItemCode.Add(a.ItemCode));
-            int[] darItemCode = { 1,2,3,4,5}; 
+            int[] darItemCode = { 1,2,3,4,5,6}; 
 
             for (int i = 0; i < numArticulos; i++)
             {
                 List<List<int>> combinacion = new List<List<int>>();
                 combinacionesPorTamano.Add(CombinacionHasta7(i+1,darItemCode));
             }
+
             foreach (var a in combinacionesPorTamano)
             {
                 List<int> respuestasTamano = RepeticionEnVentas(a);
                 respuestasPorTamano.Add(respuestasTamano);
             }
+
+
+
             //Generar soporte
             int loop=0;
             foreach (var a in combinacionesPorTamano)
@@ -216,6 +220,8 @@ namespace FuerzaBruta
                 SuportPorTamano.Add(respuestasTamano);
                 loop++;
             }
+
+
             //Generar confianza
             int loop2 = 0;
             foreach (var a in combinacionesPorTamano)
@@ -239,17 +245,19 @@ namespace FuerzaBruta
         public void imprimirPorCriterio(double suport , double confianza, List<List<List<int>>> asociaciones)
         {
             Console.WriteLine("Las asociaones que cumplen con ambos criterios serian :");
-            for (int i = 0; i < suportPorTamano.Count(); i++)
+            int loop = 0;
+            foreach (var a in combinacionesPorTamano)
             {
-
-                int loop = 0;
-                foreach (var a in SuportPorTamano.ElementAt(i))
+                if (loop!=0){
+                foreach (var e in a)
                 {
-                   // if (a.ElementAt(loop) >= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3) >= confianza)
-                   // {
-
-                    //}
+                        ImprimirCombinaciones(e);
+                        double resSuport = 0;
+                    double resConfianza = 0;
+                    if (resSuport >= suport && resConfianza >= confianza) ImprimirCombinaciones(e);
                 }
+                }
+                loop++;
             }
 
                 //if (SuportPorTamano.ElementAt(loop2).ElementAt(loop3) >= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3) >= confianza)
@@ -283,8 +291,10 @@ namespace FuerzaBruta
             {
                 //ImprimirCombinaciones(combinaciones);
 
-                List<int> ayuda = combinaciones;
+                List<int> ayuda = new List<int>();
+                combinaciones.ForEach(a=> ayuda.Add(a));
                 ayuda.Remove(ayuda.Count-1);
+
                 int indice2 = buscarIndiceAsociacion(ayuda);
                 int respuestaGrande= respuestasPorTamano.ElementAt(indice).ElementAt(loop);
                 int respuestaPeque=respuestasPorTamano.ElementAt(indice2).ElementAt(buscarIndiceRespuesta(indice2,ayuda));
@@ -294,7 +304,7 @@ namespace FuerzaBruta
                     respuesta = (double)(respuestaGrande) / (respuestaPeque);
                 }
                 resultados.Add(respuesta);
-               // Console.WriteLine(respuesta);
+                //Console.WriteLine(respuesta);
 
                 loop++;
             }
