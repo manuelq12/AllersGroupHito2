@@ -196,6 +196,10 @@ namespace FuerzaBruta
             int numArticulos = 6;
             //List<int> darItemCode = new List<int>();
             //articulos.ForEach(a=> darItemCode.Add(a.ItemCode));
+            Console.WriteLine("Indices: \n");
+
+            Console.WriteLine("Bread - 1 \nMilk - 2 \nDiapers - 3 \nBeer - 4 \nEggs - 5 \nCola - 6 \n");
+
             int[] darItemCode = { 1,2,3,4,5,6}; 
 
             for (int i = 0; i < numArticulos; i++)
@@ -244,27 +248,54 @@ namespace FuerzaBruta
         }
         public void imprimirPorCriterio(double suport , double confianza, List<List<List<int>>> asociaciones)
         {
-            Console.WriteLine("Las asociaones que cumplen con ambos criterios serian :");
+            Console.WriteLine("Las asociaciones que cumplen con ambos criterios serian :");
             int loop = 0;
+            double maxS = -1;
+            double maxC = -1;
+            int maxId1 = -1;
+            int maxId2 = -1;
+
             foreach (var a in combinacionesPorTamano)
             {
                 if (loop!=0){
+                        Console.WriteLine("Para combinaciones de " + (loop + 1) + " elementos");
+                    int loop1 = 0;
                 foreach (var e in a)
                 {
-                        ImprimirCombinaciones(e);
-                        double resSuport = 0;
-                    double resConfianza = 0;
-                    if (resSuport >= suport && resConfianza >= confianza) ImprimirCombinaciones(e);
+                    //ImprimirCombinaciones(e);
+                    double resSuport = suportPorTamano.ElementAt(loop).ElementAt(loop1);
+                    double resConfianza = confianzaPorTamano.ElementAt(loop).ElementAt(loop1);
+                        if (resSuport >= suport && resConfianza >= confianza)
+                        {
+                            ImprimirCombinaciones(e);
+                            Console.WriteLine("\n Con un Support: " + (resSuport*100) + "% \n Con una Confianza: " + (resConfianza*100) + "% " + "\n");
+                            if(maxS < resSuport && maxC < resConfianza)
+                            {
+                                maxS = resSuport;
+                                maxC = resConfianza;
+                                maxId1 = loop;
+                                maxId2 = loop1;
+                            }
+                        }
+                    loop1++;
                 }
+                    Console.WriteLine("---------------------------------------------------------------------------------------------------------------------- \n");
+                    Console.WriteLine("El maximo para combinaciones de " + (loop + 1) + " elementos es: ");
+                    if(maxId1 != -1 && maxId2 != -1)
+                    {
+                    ImprimirCombinaciones(combinacionesPorTamano.ElementAt(maxId1).ElementAt(maxId2));
+                    Console.WriteLine("\n Con un Support: " + (maxS * 100) + "% \n Con una Confianza: " + (maxC * 100) + "% " + "\n");
+                    Console.WriteLine("---------------------------------------------------------------------------------------------------------------------  \n");
+                    maxS = -1;
+                    maxC = -1;
+                    maxId1 = -1;
+                    maxId2 = -1;
+
+                    }
+
                 }
                 loop++;
             }
-
-                //if (SuportPorTamano.ElementAt(loop2).ElementAt(loop3) >= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3) >= confianza)
-                //{
-                // ImprimirCombinaciones(r);
-                //}
-
         }
         public List<double> soporteAsociaciones(List<List<int>> todo, int indice)
         {
@@ -289,76 +320,60 @@ namespace FuerzaBruta
             int loop = 0;
             foreach (var combinaciones in todo)
             {
-                //ImprimirCombinaciones(combinaciones);
-
+               // ImprimirCombinaciones(combinaciones);
                 List<int> ayuda = new List<int>();
-                combinaciones.ForEach(a=> ayuda.Add(a));
-                ayuda.Remove(ayuda.Count-1);
+                for (int i = 0; i < combinaciones.Count() -1 ; i++)
+                {
+                    ayuda.Add(combinaciones.ElementAt(i));
+                }
 
-                int indice2 = buscarIndiceAsociacion(ayuda);
-                int respuestaGrande= respuestasPorTamano.ElementAt(indice).ElementAt(loop);
-                int respuestaPeque=respuestasPorTamano.ElementAt(indice2).ElementAt(buscarIndiceRespuesta(indice2,ayuda));
+                double respuestaGrande = suportPorTamano.ElementAt(indice).ElementAt(loop);
+                //Console.WriteLine(respuestaGrande);
+                double respuestaPeque = suportPorTamano.ElementAt(indice-1).ElementAt(buscarIndiceRespuesta(indice-1, ayuda));
                 double respuesta = 0;
-                if(respuestaPeque != 0)
+                //Console.WriteLine(respuestaPeque);
+                if (respuestaPeque != 0)
                 {
                     respuesta = (double)(respuestaGrande) / (respuestaPeque);
                 }
                 resultados.Add(respuesta);
                 //Console.WriteLine(respuesta);
-
                 loop++;
             }
             return resultados;
         }
-        public int buscarIndiceAsociacion( List<int> relacion)
+        
+        public int buscarIndiceRespuesta(int indice, List<int> relacion)
+
         {
+            //ImprimirCombinaciones(relacion);
+            int tamanho = combinacionesPorTamano.ElementAt(indice).Count();
             int loop = -1;
-            foreach (var a in combinacionesPorTamano)
+            bool control = false;
+            for (int i = 0; i < tamanho && !control; i++)
             {
-                foreach (var d in a)
+                List<int> temp = combinacionesPorTamano.ElementAt(indice).ElementAt(i);
+               // ImprimirCombinaciones(temp);
+                int count = 0;
+                for (int j = 0; j < temp.Count() && !control; j++)
                 {
-                    List<int> trabajar = d.ToList();
-                    int loop2 = 0;
-                    for (int i = 0; i < trabajar.Count; i++)
+                    if(relacion.ElementAt(j) == temp.ElementAt(j))
                     {
-                        if( i< relacion.Count)
-                        {
-                        if (trabajar.ElementAt(i) == relacion.ElementAt(i)) loop2 += 1;
-                        }
-                    }
-                    if (loop2 == relacion.Count) {
-                        loop++;
-                        return loop;
+         
+                        count++;
                     }
                 }
-                loop++;
+                if (count == temp.Count())
+                {
+                    //Console.WriteLine(true);
+                    //Console.WriteLine(i);
+                    loop = i;
+                    control = true;
+                }
             }
-            return loop;
-        }
-        public int buscarIndiceRespuesta(int indice, List<int> relacion)
-        {
-            int loop = -1;
-            foreach (var d in combinacionesPorTamano.ElementAt(indice))
-            {
 
-                    List<int> trabajar = d.ToList();
-
-                    int loop2 = 0;
-                    for (int i = 0; i < trabajar.Count; i++)
-                    {
-                        if (i < relacion.Count)
-                        {
-                            if (trabajar.ElementAt(i) == relacion.ElementAt(i)) loop2 += 1;
-                        }
-                    }
-                    if (loop2 == relacion.Count)
-                    {
-                        loop++;
-                        return loop;
-                    }
-                    loop++;
-            }
             return loop;
+
         }
 
 
