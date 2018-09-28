@@ -57,7 +57,7 @@ namespace TestAlgoritmos
 
             try
             {
-                controlador.CargarVentas();
+                controlador.CargarVentas(Controlador.rutaVentas);
                 Assert.IsNotNull(controlador.Ventas);
             }
             catch
@@ -75,7 +75,8 @@ namespace TestAlgoritmos
             Escenario();
             int[] arreglo = { 1, 2, 3 };
             List<List<int>> listResult = new List<List<int>>();
-            listResult = controlador.CombinacionP(arreglo);
+            listResult = controlador.CombinacionHasta7(3,arreglo);
+
             List<int> comExistente = new List<int>() { 1, 3, 2 };
             List<int> combinacion = new List<int>();
 
@@ -99,19 +100,41 @@ namespace TestAlgoritmos
         public void TestRepeticionEnVentas()
         {
             
+            
             Escenario();
             controlador.CargarDatos();
-
-            List<List<int>> numeros = controlador.Combinacion();
+            /*
+            List<List<int>> numeros = controlador.CombinacionPrueba();
             List<int> combinacion = new List<int>();
             combinacion = numeros[0];
             
             int cantRepeticiones = 0;
             cantRepeticiones = controlador.RepeticionEnVentasP(combinacion);
             Assert.AreEqual(cantRepeticiones, 33);
+            */
+        }
+
+
+        [TestMethod]
+        public void TestGenerarAsociaciones()
+        {
+            Escenario();
+
 
         }
 
+        [TestMethod]
+        public void TestSoporteAsociaciones()
+        {
+            Escenario();
+
+        }
+
+        [TestMethod]
+        public void TestConfianzaAsocianes()
+        {
+            Escenario();
+        }
 
     }
 }
