@@ -290,7 +290,7 @@ namespace FuerzaBruta
                     maxC = -1;
                     maxId1 = -1;
                     maxId2 = -1;
-
+                        //0iujmpim
                     }
 
                 }
