@@ -238,24 +238,25 @@ namespace FuerzaBruta
         }
         public void imprimirPorCriterio(double suport , double confianza, List<List<List<int>>> asociaciones)
         {
-            int loop2 = 0;
             Console.WriteLine("Las asociaones que cumplen con ambos criterios serian :");
-            foreach (var a in combinacionesPorTamano)
+            for (int i = 0; i < suportPorTamano.Count(); i++)
             {
-                if (loop2 != 0)
+
+                int loop = 0;
+                foreach (var a in SuportPorTamano.ElementAt(i))
                 {
-                    int loop3 = 0;
-                    foreach (var r in a)
-                    {
-                        if( SuportPorTamano.ElementAt(loop2).ElementAt(loop3)>= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3)>=confianza)
-                        {
-                            ImprimirCombinaciones(r);
-                        }
-                        loop3++;
-                    }
+                   // if (a.ElementAt(loop) >= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3) >= confianza)
+                   // {
+
+                    //}
                 }
-                loop2++;
             }
+
+                //if (SuportPorTamano.ElementAt(loop2).ElementAt(loop3) >= suport && ConfianzaPorTamano.ElementAt(loop2).ElementAt(loop3) >= confianza)
+                //{
+                // ImprimirCombinaciones(r);
+                //}
+
         }
         public List<double> soporteAsociaciones(List<List<int>> todo, int indice)
         {
