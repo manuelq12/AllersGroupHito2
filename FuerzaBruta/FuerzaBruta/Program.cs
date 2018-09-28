@@ -9,31 +9,36 @@ namespace FuerzaBruta
 {
    public class Program
     {
-
+      
         static void Main(string[] args)
         {
             //listo
             Controlador controlador = new Controlador();
             controlador.CargarDatosPrueba();
-            int[] itemCode = { 1, 2, 3, 4, 5, 6 };
-            List<List<int>> numeros = controlador.CombinacionHasta7(2,itemCode);
-            int count = controlador.Ventas.GroupBy(n=> n.CardCode).Count();
 
-            List<int> b = controlador.RepeticionEnVentas(numeros);
-            List<double> porcentajes = controlador.Support(b);
 
-            Console.WriteLine("Combinaciones \n");
-            numeros.ForEach(x => controlador.ImprimirCombinaciones(x));
+            controlador.generarAsociaciones();
 
-            Console.WriteLine("Repeticiones \n");
-            controlador.ImprimirCombinaciones(b);
+            //int[] codigos = { 1,2,3,4,5,6}; 
+            //List<List<int>> numeros = controlador.CombinacionHasta7(2,codigos);
 
-            Console.WriteLine("Tamaño \n");
-            Console.WriteLine( count +  " \n");
 
-            Console.WriteLine("Porcentajes \n");
-            controlador.ImprimirPorcentajes(porcentajes);
+            //Console.WriteLine(controlador.getNumVentas());
 
+            //foreach (var d in numeros)
+            //{
+            //    controlador.ImprimirCombinaciones(d);
+            //}
+
+            //int count = numeros.Count();
+
+            //List<int> b= controlador.RepeticionEnVentas(numeros);
+
+            //foreach (var e in b)
+            //{
+            //    Console.WriteLine(e);
+            //}
+            //Console.ReadLine();
 
         }
 
