@@ -15,18 +15,30 @@ namespace FuerzaBruta
             //listo
             Controlador controlador = new Controlador();
             controlador.CargarDatosPrueba();
-            List<List<int>> numeros = controlador.CombinacionPrueba();
-            int count = numeros.Count();
 
-                numeros.ForEach(n => controlador.RepeticionEnVentas(n));
-            
 
-            for (int i = 0; i < b.Count; i++)
-            {
-                mensaje += b[i]+ " ";
-            }
-            Console.WriteLine("La combinacion "+ mensaje +"Con las siguientes repeticiones "+mayor);
-            Console.ReadLine();
+            controlador.generarAsociaciones();
+
+            //int[] codigos = { 1,2,3,4,5,6}; 
+            //List<List<int>> numeros = controlador.CombinacionHasta7(2,codigos);
+
+
+            //Console.WriteLine(controlador.getNumVentas());
+
+            //foreach (var d in numeros)
+            //{
+            //    controlador.ImprimirCombinaciones(d);
+            //}
+
+            //int count = numeros.Count();
+
+            //List<int> b= controlador.RepeticionEnVentas(numeros);
+
+            //foreach (var e in b)
+            //{
+            //    Console.WriteLine(e);
+            //}
+            //Console.ReadLine();
 
         }
 
