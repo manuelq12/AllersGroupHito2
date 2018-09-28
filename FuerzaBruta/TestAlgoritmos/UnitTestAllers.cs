@@ -103,7 +103,7 @@ namespace TestAlgoritmos
             
             Escenario();
             controlador.CargarDatos();
-            /*
+            
             List<List<int>> numeros = controlador.CombinacionPrueba();
             List<int> combinacion = new List<int>();
             combinacion = numeros[0];
@@ -111,7 +111,7 @@ namespace TestAlgoritmos
             int cantRepeticiones = 0;
             cantRepeticiones = controlador.RepeticionEnVentasP(combinacion);
             Assert.AreEqual(cantRepeticiones, 33);
-            */
+            
         }
 
 
@@ -119,22 +119,45 @@ namespace TestAlgoritmos
         public void TestGenerarAsociaciones()
         {
             Escenario();
-
+            controlador.generarAsociaciones();
+            Assert.IsNotNull(controlador.CombinacionesPorTamano);
+            Assert.IsNotNull(controlador.RespuestasPorTamano);
+            Assert.IsNotNull(controlador.SuportPorTamano);
 
         }
+
+
+
+
 
         [TestMethod]
         public void TestSoporteAsociaciones()
         {
             Escenario();
 
+            controlador.CargarDatos();
+            controlador.generarAsociaciones();
+            int[] arreglo = { 1, 2, 3 };
+            List<List<int>> todo = controlador.CombinacionHasta7(2, arreglo);
+            Assert.IsNotNull(todo);
+            List<double> soporte = controlador.soporteAsociaciones(todo,0);
+            Assert.AreEqual(soporte[0],0);
+
+           
         }
 
         [TestMethod]
         public void TestConfianzaAsocianes()
         {
             Escenario();
+           
+            controlador.CargarDatos();
+            controlador.generarAsociaciones();
+            
         }
+
+
+
 
     }
 }
