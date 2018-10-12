@@ -55,6 +55,9 @@
     <None Include="Data\Articulos.csv" />
     <None Include="Data\Clientes.csv" />
     <None Include="Data\Ventas.csv" />
+    <None Include="DatosPrueba\Articulos.csv" />
+    <None Include="DatosPrueba\Clientes.csv" />
+    <None Include="DatosPrueba\Ventas.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
